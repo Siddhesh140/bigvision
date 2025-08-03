@@ -4,7 +4,7 @@
 import Image from 'next/image';
 import { useState } from 'react';
 import { submitForm } from '../actions';
-import Modal from './Modal'; // Import the new Modal component
+import Modal from './modal'; // Import the new Modal component
 
 // Icon components
 const UserIcon = () => (
