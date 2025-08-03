@@ -4,9 +4,10 @@
 import Image from 'next/image';
 import { useState } from 'react';
 import { submitForm } from '../actions';
-import Modal from './modal'; // Import the new Modal component
+// --- FIX: Corrected the import from './modal' to './Modal' ---
+import Modal from './Modal';
 
-// Icon components
+// Icon components...
 const UserIcon = () => (
   <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
     <path d="M20 21V19C20 16.7909 18.2091 15 16 15H8C5.79086 15 4 16.7909 4 19V21" stroke="#ADADAD" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
@@ -162,9 +163,9 @@ const Contact = () => {
               </div>
               <div className="flex items-center gap-6">
                 <div className="flex -space-x-2">
-                  <div className="w-9 h-9 rounded-full relative border-2 border-white"><Image src="/karthikeyan jawahar.jpeg" layout="fill" className="rounded-full" alt="client 1"/></div>
-                  <div className="w-9 h-9 rounded-full relative border-2 border-white"><Image src="/anand mulay.jpeg" layout="fill" className="rounded-full" alt="client 2"/></div>
-                  <div className="w-9 h-9 rounded-full relative border-2 border-white"><Image src="/dinesh alone.jpeg" layout="fill" className="rounded-full" alt="client 3"/></div>
+                  <div className="w-9 h-9 rounded-full relative border-2 border-white"><Image src="/image.png" layout="fill" className="rounded-full" alt="client 1"/></div>
+                  <div className="w-9 h-9 rounded-full relative border-2 border-white"><Image src="/image.png" layout="fill" className="rounded-full" alt="client 2"/></div>
+                  <div className="w-9 h-9 rounded-full relative border-2 border-white"><Image src="/image.png" layout="fill" className="rounded-full" alt="client 3"/></div>
                 </div>
                 <p className="text-base md:text-xl text-gray-600" style={{ fontFamily: "'Roboto Mono', monospace" }}>4,000+ leads generated and counting...</p>
               </div>
