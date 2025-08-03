@@ -163,9 +163,9 @@ const Contact = () => {
               </div>
               <div className="flex items-center gap-6">
                 <div className="flex -space-x-2">
-                  <div className="w-9 h-9 rounded-full relative border-2 border-white"><Image src="/image.png" layout="fill" className="rounded-full" alt="client 1"/></div>
-                  <div className="w-9 h-9 rounded-full relative border-2 border-white"><Image src="/image.png" layout="fill" className="rounded-full" alt="client 2"/></div>
-                  <div className="w-9 h-9 rounded-full relative border-2 border-white"><Image src="/image.png" layout="fill" className="rounded-full" alt="client 3"/></div>
+                  <div className="w-9 h-9 rounded-full relative border-2 border-white"><Image src="/karthikeyan jawahar.jpeg" layout="fill" className="rounded-full" alt="client 1"/></div>
+                  <div className="w-9 h-9 rounded-full relative border-2 border-white"><Image src="/anand mulay.jpeg" layout="fill" className="rounded-full" alt="client 2"/></div>
+                  <div className="w-9 h-9 rounded-full relative border-2 border-white"><Image src="/dinesh alone.jpeg" layout="fill" className="rounded-full" alt="client 3"/></div>
                 </div>
                 <p className="text-base md:text-xl text-gray-600" style={{ fontFamily: "'Roboto Mono', monospace" }}>4,000+ leads generated and counting...</p>
               </div>
