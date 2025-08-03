@@ -4,11 +4,12 @@
 import { MongoClient } from 'mongodb';
 
 export async function submitForm(formData) {
+  // This line reads the "secret address" you will set up in Vercel
   const client = new MongoClient(process.env.MONGODB_URI);
 
   try {
     await client.connect();
-    // --- FIX: Updated the database and collection names to match your Compass setup ---
+    // Use the database and collection names from your MongoDB Compass setup
     const db = client.db('BigVision'); 
     const collection = db.collection('BigVision'); 
 
