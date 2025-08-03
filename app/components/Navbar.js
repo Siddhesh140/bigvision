@@ -54,14 +54,12 @@ const Navbar = () => {
         </div>
 
         {/* Book a Call Button (Visible on Desktop) */}
-        <a 
-          href="https://wa.me/919579662005"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="hidden md:block text-white font-semibold py-2 px-4 rounded-full bg-gradient-to-r from-[#31A2F3] to-[#2213C4] hover:opacity-90 transition-all duration-300 ease-in-out hover:scale-105"
+        <button 
+          onClick={() => scrollToSection('about')}
+          className="hidden md:block text-white font-semibold py-2 px-4 rounded-full bg-gradient-to-r from-[#31A2F3] to-[#2213C4] hover:opacity-90 transition-all duration-300 ease-in-out hover:scale-110"
         >
           BOOK A CALL
-        </a>
+        </button>
 
         {/* Hamburger Menu Icon (Visible on Mobile) */}
         <div className="md:hidden">
@@ -80,14 +78,12 @@ const Navbar = () => {
           <button onClick={() => scrollToSection('why-us')} className="uppercase">Why Us</button>
           <button onClick={() => scrollToSection('testimonials')} className="uppercase">Testimonials</button>
           <button onClick={() => scrollToSection('about')} className="uppercase">About</button>
-          <a 
-            href="https://wa.me/919579662005"
-            target="_blank"
-            rel="noopener noreferrer"
+          <button 
+            onClick={() => scrollToSection('about')}
             className="mt-8 text-white font-semibold py-3 px-6 rounded-full bg-gradient-to-r from-[#31A2F3] to-[#2213C4]"
           >
             BOOK A CALL
-          </a>
+          </button>
         </div>
       </div>
     </>

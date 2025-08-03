@@ -7,39 +7,41 @@ import Contact from './components/Contact';
 import Footer from './components/Footer';
 import Testimonials from './components/Testimonials';
 import WhyBigVision from './components/WhyBigVision';
-// --- FIX: The Navbar should only be in layout.js, so we remove the import from here ---
 // import Navbar from './components/Navbar';
 import './globals.css';
 
 export default function Home() {
-  // --- Hooks for the underline animation ---
   const servicesTitleRef = useRef(null);
+  const heroRef = useRef(null);
+
   const { scrollYProgress } = useScroll({
     target: servicesTitleRef,
-    offset: ["start end", "end start"] // Track from when the bottom of the element enters the viewport to when the top leaves
+    offset: ["start end", "end start"]
   });
-  // Map scroll progress to the underline's width (scaleX)
   const underlineScaleX = useTransform(scrollYProgress, [0, 0.5, 1], [0, 1, 0]);
 
+  const { scrollYProgress: heroScrollYProgress } = useScroll({
+    target: heroRef,
+    offset: ["start start", "end start"]
+  });
+  const backgroundParallaxY = useTransform(heroScrollYProgress, [0, 1], [0, 300]);
+  const contentParallaxY = useTransform(heroScrollYProgress, [0, 1], [0, -600]);
 
   return (
     <>
-      {/* --- FIX: The Navbar component is removed from here --- */}
       <main
-        className="relative mx-auto overflow-hidden"
-        style={{ width: '1440px', backgroundColor: '#151515' }}
+        className="relative mx-auto overflow-hidden w-full max-w-[1440px]"
+        style={{ backgroundColor: '#151515' }}
       >
         {/* Hero Section */}
         <div
-          className="relative overflow-hidden"
-          style={{ height: '1133px', backgroundColor: '#0A0A0A' }}
+          ref={heroRef}
+          className="relative overflow-hidden w-full"
+          style={{ height: '1133px' }}
         >
-          {/* Layered Cloud Animation */}
           <motion.div
             className="absolute inset-0 z-10"
-            initial={{ x: 0 }}
-            animate={{ x: [0, -20, 0], y: [0, 10, 0] }}
-            transition={{ repeat: Infinity, duration: 30, ease: 'linear' }}
+            style={{ y: backgroundParallaxY }}
           >
             <Image
               src="/Frame 3.svg"
@@ -49,7 +51,6 @@ export default function Home() {
             />
           </motion.div>
 
-          {/* Glowing Logo Behind */}
           <motion.div
             className="absolute top-[100px] left-1/2 z-0"
             style={{ transform: 'translateX(-50%)', width: '300px', height: '300px' }}
@@ -65,172 +66,151 @@ export default function Home() {
             ></div>
           </motion.div>
 
-          {/* Hero Content Block */}
-          <div
-            className="absolute z-40"
-            style={{
-              left: '50%',
-              top: '139px',
-              transform: 'translateX(-50%)',
-              width: '880px',
-              height: '357px',
-            }}
+          {/* Hero Content Block with Parallax */}
+          <motion.div
+            className="absolute z-40 top-[139px] left-1/2 -translate-x-1/2 w-full max-w-[880px] h-[357px] px-4"
+            style={{ y: contentParallaxY }}
           >
-            {/* --- NEW: Sliding Text Animation --- */}
-            <div className="relative w-full h-auto overflow-hidden">
-                {/* Top Half Sliding from Left */}
-                <div className="h-[3.75rem] overflow-hidden">
-                    <motion.h1
-                        initial={{ x: "-100%" }}
-                        animate={{ x: 0 }}
-                        transition={{ duration: 1.2, ease: [0.6, 0.01, -0.05, 0.95], delay: 0.1 }}
-                        className="text-center font-bold text-[3.75rem] leading-none uppercase text-transparent bg-clip-text"
-                        style={{ fontFamily: "'Integral CF', sans-serif", width: '880px', backgroundImage: 'linear-gradient(90deg, #FFFFFF 0%, #EBEBEB 32.21%, #7A7A7A 75%, #525252 99.52%)' }}
-                    >
-                        Where B2B Brand
-                    </motion.h1>
-                </div>
-                {/* Bottom Half Sliding from Right */}
-                <div className="h-[3.75rem] overflow-hidden">
-                    <motion.h1
-                        initial={{ x: "100%" }}
-                        animate={{ x: 0 }}
-                        transition={{ duration: 1.2, ease: [0.6, 0.01, -0.05, 0.95], delay: 0.5 }}
-                        className="text-center font-bold text-[3.75rem] leading-none uppercase text-transparent bg-clip-text"
-                        style={{ fontFamily: "'Integral CF', sans-serif", width: '880px', backgroundImage: 'linear-gradient(90deg, #FFFFFF 0%, #EBEBEB 32.21%, #7A7A7A 75%, #525252 99.52%)' }}
-                    >
-                        become industry authorities
-                    </motion.h1>
-                </div>
+            {/* Sliding Text Animation */}
+            <div className="relative w-full h-auto">
+              <div className="h-auto md:h-[3.75rem] overflow-hidden">
+                <motion.h1
+                  initial={{ x: "-100%" }}
+                  animate={{ x: 0 }}
+                  transition={{ duration: 1.2, ease: [0.6, 0.01, -0.05, 0.95], delay: 0.1 }}
+                  className="text-center font-bold text-4xl md:text-[3.75rem] leading-tight uppercase text-transparent bg-clip-text"
+                  style={{ fontFamily: "'Integral CF', sans-serif", backgroundImage: 'linear-gradient(90deg, #FFFFFF 0%, #EBEBEB 32.21%, #7A7A7A 75%, #525252 99.52%)' }}
+                >
+                  Where B2B Brand
+                </motion.h1>
+              </div>
+              <div className="h-auto md:h-[3.75rem] overflow-hidden">
+                <motion.h1
+                  initial={{ x: "100%" }}
+                  animate={{ x: 0 }}
+                  transition={{ duration: 1.2, ease: [0.6, 0.01, -0.05, 0.95], delay: 0.5 }}
+                  className="text-center font-bold text-4xl md:text-[3.75rem] leading-tight uppercase text-transparent bg-clip-text"
+                  style={{ fontFamily: "'Integral CF', sans-serif", backgroundImage: 'linear-gradient(90deg, #FFFFFF 0%, #EBEBEB 32.21%, #7A7A7A 75%, #525252 99.52%)' }}
+                >
+                  become industry authorities
+                </motion.h1>
+              </div>
             </div>
             
-
-
-            <div className="absolute flex flex-col" style={{ left: '176px', top: '273px', gap: '0.875rem' }}>
-              
-              <p
-                className="font-bold text-[3rem] text-transparent bg-clip-text"
-                style={{
-                  fontFamily: "'Integral CF', sans-serif",
-                  backgroundImage: 'linear-gradient(90deg, #FFFFFF 0%, #EBEBEB 32.21%, #7A7A7A 75%, #525252 99.52%)',
-                  
-                }}
-              >
-                4000+
-              </p>
-              <p className="text-[1.25rem] uppercase text-white" style={{ fontFamily: "'Roboto Mono', monospace" }}>
-                Leads Generated
-              </p>
+            <div className="absolute top-[273px] left-0 right-0 flex flex-row justify-center items-start gap-24 sm:gap-48">
+              <div className="flex flex-col items-center gap-2">
+                <p
+                  className="font-bold text-4xl md:text-[3rem] text-transparent bg-clip-text"
+                  style={{ fontFamily: "'Integral CF', sans-serif", backgroundImage: 'linear-gradient(90deg, #FFFFFF 0%, #EBEBEB 32.21%, #7A7A7A 75%, #525252 99.52%)' }}
+                >
+                  4000+
+                </p>
+                <p className="text-base md:text-[1.25rem] uppercase text-white" style={{ fontFamily: "'Roboto Mono', monospace" }}>
+                  Leads Generated
+                </p>
+              </div>
+              <div className="flex flex-col items-center gap-2">
+                <p
+                  className="font-bold text-4xl md:text-[3rem] text-transparent bg-clip-text"
+                  style={{ fontFamily: "'Integral CF', sans-serif", backgroundImage: 'linear-gradient(90deg, #FFFFFF 0%, #EBEBEB 32.21%, #7A7A7A 75%, #525252 99.52%)' }}
+                >
+                  12+
+                </p>
+                <p className="text-base md:text-[1.25rem] uppercase text-white" style={{ fontFamily: "'Roboto Mono', monospace" }}>
+                  Brands Scaled
+                </p>
+              </div>
             </div>
-
-            <div className="absolute flex flex-col" style={{ left: '618px', top: '266px', gap: '0.875rem' }}>
-              <p
-                className="font-bold text-[3rem] text-transparent bg-clip-text"
-                style={{
-                  fontFamily: "'Integral CF', sans-serif",
-                  backgroundImage: 'linear-gradient(90deg, #FFFFFF 0%, #EBEBEB 32.21%, #7A7A7A 75%, #525252 99.52%)',
-                }}
-              >
-                12+
-              </p>
-              <p className="text-[1.25rem] uppercase text-white" style={{ fontFamily: "'Roboto Mono', monospace" }}>
-                Brands Scaled
-              </p>
-            </div>
-          </div>
+          </motion.div>
         </div>
 
         {/* Services Section */}
         <section
           id="services"
-          className="relative w-full flex flex-col items-center -mt-[4.2rem] pb-[15rem] px-[5rem] gap-[4rem]"
+          className="relative w-full flex flex-col items-center -mt-16 md:-mt-[4.2rem] py-24 px-4 sm:px-8 lg:px-16 gap-16"
           style={{ background: "url('/ss2.png') center/cover no-repeat" }}
         >
-          <div className="z-10 flex flex-col items-center gap-8 mb-16 text-center">
+          <div className="z-10 flex flex-col items-center gap-8 text-center">
             <div ref={servicesTitleRef} className="relative inline-block">
-              <h2 className="text-[3.75rem] font-bold text-white" style={{ fontFamily: "'Integral CF', sans-serif" }}>
+              <h2 className="text-4xl md:text-5xl lg:text-[3.75rem] font-bold text-white" style={{ fontFamily: "'Integral CF', sans-serif" }}>
                 WHAT WE DO
               </h2>
               <motion.div
                 className="absolute bottom-[-10px] left-0 right-0 h-1 bg-blue-500"
-                style={{ scaleX: underlineScaleX, originX: 0.5 }} // Apply the transformed scaleX
+                style={{ scaleX: underlineScaleX, originX: 0.5 }}
               />
             </div>
             <p
-              className="text-[1.25rem] text-white max-w-2xl"
+              className="text-lg md:text-[1.25rem] text-white max-w-3xl"
               style={{ fontFamily: "'Roboto Mono', monospace" }}
             >
               Comprehensive LinkedIn solutions designed to transform your B2B presence into a lead generating powerhouse
             </p>
           </div>
 
-          <div className="z-10 flex flex-row gap-8 w-full max-w-7xl">
-            {/* Card 1 */}
+          <div className="z-10 flex flex-col md:flex-row gap-8 w-full max-w-7xl">
             <div
               className="flex-1 flex flex-col p-7 gap-9 rounded-lg transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-[0_0_35px_rgba(59,130,246,0.4)]"
               style={{ backgroundColor: '#191919' }}
             >
-              <div className="w-full h-[22rem] relative">
+              <div className="w-full h-64 sm:h-[22rem] relative">
                 <Image src="/image 14.png" alt="Lead Generation" layout="fill" objectFit="cover" />
               </div>
               <div className="flex flex-col gap-4">
-                <h3 className="text-[1.875rem] font-bold text-white" style={{ fontFamily: "'Montserrat', sans-serif" }}>
+                <h3 className="text-2xl lg:text-[1.875rem] font-bold text-white" style={{ fontFamily: "'Montserrat', sans-serif" }}>
                   Lead Generation
                 </h3>
-                <p className="text-[1rem] text-gray-400" style={{ fontFamily: "'Roboto Mono', monospace" }}>
+                <p className="text-base lg:text-[1rem] text-gray-400" style={{ fontFamily: "'Roboto Mono', monospace" }}>
                   We don’t just connect - we convert.
                 </p>
               </div>
-              <p className="text-[1rem] text-white" style={{ fontFamily: "'Roboto Mono', monospace" }}>
+              <p className="text-base lg:text-[1rem] text-white" style={{ fontFamily: "'Roboto Mono', monospace" }}>
                 We provide lead generation globally. From cold outreach to warm conversations, we help you get in front of the right decision-makers with personalized, strategic messages. 
               </p>
             </div>
 
-            {/* Card 2 */}
             <div
               className="flex-1 flex flex-col p-7 gap-9 rounded-lg transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-[0_0_35px_rgba(59,130,246,0.4)]"
               style={{ backgroundColor: '#191919' }}
             >
-              <div className="w-full h-[22rem] relative">
+              <div className="w-full h-64 sm:h-[22rem] relative">
                 <Image src="/image 14 (1).png" alt="Personal Branding" layout="fill" objectFit="cover" />
               </div>
               <div className="flex flex-col gap-4">
-                <h3 className="text-[1.875rem] font-bold text-white" style={{ fontFamily: "'Montserrat', sans-serif" }}>
+                <h3 className="text-2xl lg:text-[1.875rem] font-bold text-white" style={{ fontFamily: "'Montserrat', sans-serif" }}>
                   Personal Branding
                 </h3>
-                <p className="text-[1rem] text-gray-400" style={{ fontFamily: "'Roboto Mono', monospace" }}>
+                <p className="text-base lg:text-[1rem] text-gray-400" style={{ fontFamily: "'Roboto Mono', monospace" }}>
                   We build leaders — not just profiles.
                 </p>
               </div>
-              <p className="text-[1rem] text-white" style={{ fontFamily: "'Roboto Mono', monospace" }}>
+              <p className="text-base lg:text-[1rem] text-white" style={{ fontFamily: "'Roboto Mono', monospace" }}>
                 Your personal brand is your modern business card. We craft bold, story-driven content that positions you as the expert in your industry.
               </p>
             </div>
 
-            {/* Card 3 */}
             <div
               className="flex-1 flex flex-col p-7 gap-9 rounded-lg transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-[0_0_35px_rgba(59,130,246,0.4)]"
               style={{ backgroundColor: '#191919' }}
             >
-              <div className="w-full h-[22rem] relative">
+              <div className="w-full h-64 sm:h-[22rem] relative">
                 <Image src="/image 14 (2).png" alt="Content Creation" layout="fill" objectFit="cover" />
               </div>
               <div className="flex flex-col gap-4">
-                <h3 className="text-[1.875rem] font-bold text-white" style={{ fontFamily: "'Montserrat', sans-serif" }}>
+                <h3 className="text-2xl lg:text-[1.875rem] font-bold text-white" style={{ fontFamily: "'Montserrat', sans-serif" }}>
                   Content Creation
                 </h3>
-                <p className="text-[1rem] text-gray-400" style={{ fontFamily: "'Roboto Mono', monospace" }}>
+                <p className="text-base lg:text-[1rem] text-gray-400" style={{ fontFamily: "'Roboto Mono', monospace" }}>
                   We know your audience — because we study your industry.
                 </p>
               </div>
-              <p className="text-[1rem] text-white" style={{ fontFamily: "'Roboto Mono', monospace" }}>
+              <p className="text-base lg:text-[1rem] text-white" style={{ fontFamily: "'Roboto Mono', monospace" }}>
                 Our team creates content that speaks your customers' language. Reels, carousels, thought-leadership posts tailored to your brand & buyer.
               </p>
             </div>
           </div>
         </section>
 
-        {/* Other Sections */}
         <div id="why-us"><WhyBigVision /></div>
         <div id="testimonials"><Testimonials /></div>
         <div id="about"><Contact /></div>
