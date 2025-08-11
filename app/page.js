@@ -17,6 +17,7 @@ export default function Home() {
   });
   const underlineScaleX = useTransform(scrollYProgress, [0, 0.5, 1], [0, 1, 0]);
 
+
   return (
     <>
       <main
@@ -26,7 +27,7 @@ export default function Home() {
         {/* Hero Section */}
         <div
           className="relative overflow-hidden w-full"
-          style={{ height: '100vh', minHeight: '700px', backgroundColor: '#0A0A0A' }}
+          style={{ height: '1133px' }}
         >
           <motion.div
             className="absolute inset-0 z-10"
@@ -43,7 +44,7 @@ export default function Home() {
           </motion.div>
 
           <motion.div
-            className="absolute top-[10%] left-1/2 z-0"
+            className="absolute top-[100px] left-1/2 z-0"
             style={{ transform: 'translateX(-50%)', width: '300px', height: '300px' }}
             animate={{ opacity: [0.3, 0.8, 0.3] }}
             transition={{ duration: 4, repeat: Infinity }}
@@ -57,48 +58,66 @@ export default function Home() {
             ></div>
           </motion.div>
 
-          {/* Hero Content Block - Centered with flexbox */}
+          {/* Hero Content Block */}
           <div
-            className="absolute inset-0 z-40 flex flex-col items-center justify-center p-4"
+            className="absolute z-40 top-[139px] left-1/2 -translate-x-1/2 w-full max-w-[880px] h-[357px] px-4"
           >
-            <div className="w-full max-w-4xl flex flex-col items-center">
-                {/* --- FIX: Restored the original sliding text animation --- */}
-                <div className="relative w-full h-auto">
-                    <div className="h-auto md:h-[3.75rem] overflow-hidden">
-                        <motion.h1
-                            initial={{ x: "-100%" }}
-                            animate={{ x: 0 }}
-                            transition={{ duration: 1.2, ease: [0.6, 0.01, -0.05, 0.95], delay: 0.1 }}
-                            className="text-center font-bold text-4xl md:text-[3.75rem] leading-tight uppercase text-transparent bg-clip-text"
-                            style={{ fontFamily: "'Integral CF', sans-serif", backgroundImage: 'linear-gradient(90deg, #FFFFFF 0%, #EBEBEB 32.21%, #7A7A7A 75%, #525252 99.52%)' }}
-                        >
-                            Where B2B Brand
-                        </motion.h1>
-                    </div>
-                    <div className="h-auto md:h-[3.75rem] overflow-hidden">
-                        <motion.h1
-                            initial={{ x: "100%" }}
-                            animate={{ x: 0 }}
-                            transition={{ duration: 1.2, ease: [0.6, 0.01, -0.05, 0.95], delay: 0.5 }}
-                            className="text-center font-bold text-4xl md:text-[3.75rem] leading-tight uppercase text-transparent bg-clip-text"
-                            style={{ fontFamily: "'Integral CF', sans-serif", backgroundImage: 'linear-gradient(90deg, #FFFFFF 0%, #EBEBEB 32.21%, #7A7A7A 75%, #525252 99.52%)' }}
-                        >
-                            become industry authorities
-                        </motion.h1>
-                    </div>
+            {/* Sliding Text Animation */}
+            <div className="relative w-full h-auto">
+                <div className="h-auto md:h-[3.75rem] overflow-hidden">
+                    <motion.h1
+                        initial={{ x: "-100%" }}
+                        animate={{ x: 0 }}
+                        transition={{ duration: 1.2, ease: [0.6, 0.01, -0.05, 0.95], delay: 0.1 }}
+                        className="text-center font-bold text-4xl md:text-[3.75rem] leading-tight uppercase text-transparent bg-clip-text"
+                        style={{ fontFamily: "'Integral CF', sans-serif", backgroundImage: 'linear-gradient(90deg, #FFFFFF 0%, #EBEBEB 32.21%, #7A7A7A 75%, #525252 99.52%)' }}
+                    >
+                        Where B2B Brand
+                    </motion.h1>
                 </div>
-                
-                {/* Stats stack on mobile, side-by-side on larger screens */}
-                <div className="flex flex-col sm:flex-row items-center justify-center gap-12 sm:gap-24 mt-24">
-                    <div className="flex flex-col items-center gap-2">
-                        <p className="font-bold text-4xl md:text-[3rem] text-transparent bg-clip-text" style={{ fontFamily: "'Integral CF', sans-serif", backgroundImage: 'linear-gradient(90deg, #FFFFFF 0%, #EBEBEB 32.21%, #7A7A7A 75%, #525252 99.52%)' }}>4000+</p>
-                        <p className="text-base md:text-[1.25rem] uppercase text-white" style={{ fontFamily: "'Roboto Mono', monospace" }}>Leads Generated</p>
-                    </div>
-                    <div className="flex flex-col items-center gap-2">
-                        <p className="font-bold text-4xl md:text-[3rem] text-transparent bg-clip-text" style={{ fontFamily: "'Integral CF', sans-serif", backgroundImage: 'linear-gradient(90deg, #FFFFFF 0%, #EBEBEB 32.21%, #7A7A7A 75%, #525252 99.52%)' }}>12+</p>
-                        <p className="text-base md:text-[1.25rem] uppercase text-white" style={{ fontFamily: "'Roboto Mono', monospace" }}>Brands Scaled</p>
-                    </div>
+                <div className="h-auto md:h-[3.75rem] overflow-hidden">
+                    <motion.h1
+                        initial={{ x: "100%" }}
+                        animate={{ x: 0 }}
+                        transition={{ duration: 1.2, ease: [0.6, 0.01, -0.05, 0.95], delay: 0.5 }}
+                        className="text-center font-bold text-4xl md:text-[3.75rem] leading-tight uppercase text-transparent bg-clip-text"
+                        style={{ fontFamily: "'Integral CF', sans-serif", backgroundImage: 'linear-gradient(90deg, #FFFFFF 0%, #EBEBEB 32.21%, #7A7A7A 75%, #525252 99.52%)' }}
+                    >
+                        become industry authorities
+                    </motion.h1>
                 </div>
+            </div>
+            
+            {/* Stats Section - Now responsive */}
+            <div className="absolute top-[273px] left-0 right-0 flex flex-col sm:flex-row justify-center items-center gap-12 sm:gap-24 mt-8 sm:mt-0">
+              <div className="flex flex-col items-center gap-2">
+                <p
+                  className="font-bold text-4xl md:text-[3rem] text-transparent bg-clip-text"
+                  style={{
+                    fontFamily: "'Integral CF', sans-serif",
+                    backgroundImage: 'linear-gradient(90deg, #FFFFFF 0%, #EBEBEB 32.21%, #7A7A7A 75%, #525252 99.52%)',
+                  }}
+                >
+                  4000+
+                </p>
+                <p className="text-base md:text-[1.25rem] uppercase text-white" style={{ fontFamily: "'Roboto Mono', monospace" }}>
+                  Leads Generated
+                </p>
+              </div>
+              <div className="flex flex-col items-center gap-2">
+                <p
+                  className="font-bold text-4xl md:text-[3rem] text-transparent bg-clip-text"
+                  style={{
+                    fontFamily: "'Integral CF', sans-serif",
+                    backgroundImage: 'linear-gradient(90deg, #FFFFFF 0%, #EBEBEB 32.21%, #7A7A7A 75%, #525252 99.52%)',
+                  }}
+                >
+                  12+
+                </p>
+                <p className="text-base md:text-[1.25rem] uppercase text-white" style={{ fontFamily: "'Roboto Mono', monospace" }}>
+                  Brands Scaled
+                </p>
+              </div>
             </div>
           </div>
         </div>
@@ -106,7 +125,7 @@ export default function Home() {
         {/* Services Section */}
         <section
           id="services"
-          className="relative w-full flex flex-col items-center py-24 px-4 sm:px-8 lg:px-16 gap-16"
+          className="relative w-full flex flex-col items-center -mt-16 md:-mt-[4.2rem] py-24 px-4 sm:px-8 lg:px-16 gap-16"
           style={{ background: "url('/ss2.png') center/cover no-repeat" }}
         >
           <div className="z-10 flex flex-col items-center gap-8 text-center">
@@ -127,7 +146,6 @@ export default function Home() {
             </p>
           </div>
 
-          {/* Service cards stack on mobile */}
           <div className="z-10 flex flex-col md:flex-row gap-8 w-full max-w-7xl">
             <div
               className="flex-1 flex flex-col p-7 gap-9 rounded-lg transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-[0_0_35px_rgba(59,130,246,0.4)]"
