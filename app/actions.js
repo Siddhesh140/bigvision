@@ -22,7 +22,7 @@ export async function submitForm(formData) {
   try {
     // Insert the data into the 'leads' table in your Supabase project
     const { data, error } = await supabase
-      .from('leads')
+      .from('Leads')
       .insert([leadData]);
 
     // If there was an error during the insert, throw it to be caught by the catch block
