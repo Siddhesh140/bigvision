@@ -7,41 +7,70 @@ import Contact from './components/Contact';
 import Footer from './components/Footer';
 import Testimonials from './components/Testimonials';
 import WhyBigVision from './components/WhyBigVision';
-// import Navbar from './components/Navbar';
 import './globals.css';
+
+// Animated headline component with responsive font sizes
+const AnimatedHeadline = ({ text }) => {
+  const words = text.split(" ");
+
+  const container = {
+    hidden: { opacity: 0 },
+    visible: (i = 1) => ({
+      opacity: 1,
+      transition: { staggerChildren: 0.12, delayChildren: 0.5 * i },
+    }),
+  };
+
+  const child = {
+    visible: { opacity: 1, y: 0, transition: { type: "spring", damping: 12, stiffness: 100 } },
+    hidden: { opacity: 0, y: 20, transition: { type: "spring", damping: 12, stiffness: 100 } },
+  };
+
+  return (
+    <motion.h1
+      className="text-center font-bold text-4xl md:text-5xl lg:text-[3.75rem] leading-tight uppercase text-transparent bg-clip-text overflow-hidden"
+      style={{ 
+        fontFamily: "'Integral CF', sans-serif", 
+        backgroundImage: 'linear-gradient(90deg, #FFFFFF 0%, #EBEBEB 32.21%, #7A7A7A 75%, #525252 99.52%)'
+      }}
+      variants={container}
+      initial="hidden"
+      animate="visible"
+    >
+      {words.map((word, index) => (
+        <motion.span key={index} variants={child} style={{ marginRight: "0.5rem", display: "inline-block" }}>
+          {word}
+        </motion.span>
+      ))}
+    </motion.h1>
+  );
+};
 
 export default function Home() {
   const servicesTitleRef = useRef(null);
-  const heroRef = useRef(null);
-
   const { scrollYProgress } = useScroll({
     target: servicesTitleRef,
     offset: ["start end", "end start"]
   });
   const underlineScaleX = useTransform(scrollYProgress, [0, 0.5, 1], [0, 1, 0]);
 
-  const { scrollYProgress: heroScrollYProgress } = useScroll({
-    target: heroRef,
-    offset: ["start start", "end start"]
-  });
-  const backgroundParallaxY = useTransform(heroScrollYProgress, [0, 1], [0, 300]);
-  const contentParallaxY = useTransform(heroScrollYProgress, [0, 1], [0, -600]);
-
   return (
     <>
+      {/* Main container is now full-width and centered */}
       <main
-        className="relative mx-auto overflow-hidden w-full max-w-[1440px]"
+        className="relative mx-auto overflow-hidden w-full"
         style={{ backgroundColor: '#151515' }}
       >
         {/* Hero Section */}
         <div
-          ref={heroRef}
           className="relative overflow-hidden w-full"
-          style={{ height: '1133px' }}
+          style={{ height: '100vh', minHeight: '700px', backgroundColor: '#0A0A0A' }}
         >
           <motion.div
             className="absolute inset-0 z-10"
-            style={{ y: backgroundParallaxY }}
+            initial={{ x: 0 }}
+            animate={{ x: [0, -20, 0], y: [0, 10, 0] }}
+            transition={{ repeat: Infinity, duration: 30, ease: 'linear' }}
           >
             <Image
               src="/Frame 3.svg"
@@ -52,7 +81,7 @@ export default function Home() {
           </motion.div>
 
           <motion.div
-            className="absolute top-[100px] left-1/2 z-0"
+            className="absolute top-[10%] left-1/2 z-0"
             style={{ transform: 'translateX(-50%)', width: '300px', height: '300px' }}
             animate={{ opacity: [0.3, 0.8, 0.3] }}
             transition={{ duration: 4, repeat: Infinity }}
@@ -66,68 +95,32 @@ export default function Home() {
             ></div>
           </motion.div>
 
-          {/* Hero Content Block with Parallax */}
-          <motion.div
-            className="absolute z-40 top-[139px] left-1/2 -translate-x-1/2 w-full max-w-[880px] h-[357px] px-4"
-            style={{ y: contentParallaxY }}
+          {/* Hero Content Block - Centered with flexbox */}
+          <div
+            className="absolute inset-0 z-40 flex flex-col items-center justify-center p-4"
           >
-            {/* Sliding Text Animation */}
-            <div className="relative w-full h-auto">
-              <div className="h-auto md:h-[3.75rem] overflow-hidden">
-                <motion.h1
-                  initial={{ x: "-100%" }}
-                  animate={{ x: 0 }}
-                  transition={{ duration: 1.2, ease: [0.6, 0.01, -0.05, 0.95], delay: 0.1 }}
-                  className="text-center font-bold text-4xl md:text-[3.75rem] leading-tight uppercase text-transparent bg-clip-text"
-                  style={{ fontFamily: "'Integral CF', sans-serif", backgroundImage: 'linear-gradient(90deg, #FFFFFF 0%, #EBEBEB 32.21%, #7A7A7A 75%, #525252 99.52%)' }}
-                >
-                  Where B2B Brand
-                </motion.h1>
-              </div>
-              <div className="h-auto md:h-[3.75rem] overflow-hidden">
-                <motion.h1
-                  initial={{ x: "100%" }}
-                  animate={{ x: 0 }}
-                  transition={{ duration: 1.2, ease: [0.6, 0.01, -0.05, 0.95], delay: 0.5 }}
-                  className="text-center font-bold text-4xl md:text-[3.75rem] leading-tight uppercase text-transparent bg-clip-text"
-                  style={{ fontFamily: "'Integral CF', sans-serif", backgroundImage: 'linear-gradient(90deg, #FFFFFF 0%, #EBEBEB 32.21%, #7A7A7A 75%, #525252 99.52%)' }}
-                >
-                  become industry authorities
-                </motion.h1>
-              </div>
+            <div className="w-full max-w-4xl flex flex-col items-center">
+                <AnimatedHeadline text="Where B2B Brand become industry authorities" />
+                
+                {/* Stats stack on mobile, side-by-side on larger screens */}
+                <div className="flex flex-col sm:flex-row items-center justify-center gap-12 sm:gap-24 mt-24">
+                    <div className="flex flex-col items-center gap-2">
+                        <p className="font-bold text-4xl md:text-[3rem] text-transparent bg-clip-text" style={{ fontFamily: "'Integral CF', sans-serif", backgroundImage: 'linear-gradient(90deg, #FFFFFF 0%, #EBEBEB 32.21%, #7A7A7A 75%, #525252 99.52%)' }}>4000+</p>
+                        <p className="text-base md:text-[1.25rem] uppercase text-white" style={{ fontFamily: "'Roboto Mono', monospace" }}>Leads Generated</p>
+                    </div>
+                    <div className="flex flex-col items-center gap-2">
+                        <p className="font-bold text-4xl md:text-[3rem] text-transparent bg-clip-text" style={{ fontFamily: "'Integral CF', sans-serif", backgroundImage: 'linear-gradient(90deg, #FFFFFF 0%, #EBEBEB 32.21%, #7A7A7A 75%, #525252 99.52%)' }}>12+</p>
+                        <p className="text-base md:text-[1.25rem] uppercase text-white" style={{ fontFamily: "'Roboto Mono', monospace" }}>Brands Scaled</p>
+                    </div>
+                </div>
             </div>
-            
-            <div className="absolute top-[273px] left-0 right-0 flex flex-row justify-center items-start gap-24 sm:gap-48">
-              <div className="flex flex-col items-center gap-2">
-                <p
-                  className="font-bold text-4xl md:text-[3rem] text-transparent bg-clip-text"
-                  style={{ fontFamily: "'Integral CF', sans-serif", backgroundImage: 'linear-gradient(90deg, #FFFFFF 0%, #EBEBEB 32.21%, #7A7A7A 75%, #525252 99.52%)' }}
-                >
-                  4000+
-                </p>
-                <p className="text-base md:text-[1.25rem] uppercase text-white" style={{ fontFamily: "'Roboto Mono', monospace" }}>
-                  Leads Generated
-                </p>
-              </div>
-              <div className="flex flex-col items-center gap-2">
-                <p
-                  className="font-bold text-4xl md:text-[3rem] text-transparent bg-clip-text"
-                  style={{ fontFamily: "'Integral CF', sans-serif", backgroundImage: 'linear-gradient(90deg, #FFFFFF 0%, #EBEBEB 32.21%, #7A7A7A 75%, #525252 99.52%)' }}
-                >
-                  12+
-                </p>
-                <p className="text-base md:text-[1.25rem] uppercase text-white" style={{ fontFamily: "'Roboto Mono', monospace" }}>
-                  Brands Scaled
-                </p>
-              </div>
-            </div>
-          </motion.div>
+          </div>
         </div>
 
         {/* Services Section */}
         <section
           id="services"
-          className="relative w-full flex flex-col items-center -mt-16 md:-mt-[4.2rem] py-24 px-4 sm:px-8 lg:px-16 gap-16"
+          className="relative w-full flex flex-col items-center py-24 px-4 sm:px-8 lg:px-16 gap-16"
           style={{ background: "url('/ss2.png') center/cover no-repeat" }}
         >
           <div className="z-10 flex flex-col items-center gap-8 text-center">
@@ -148,6 +141,7 @@ export default function Home() {
             </p>
           </div>
 
+          {/* Service cards stack on mobile */}
           <div className="z-10 flex flex-col md:flex-row gap-8 w-full max-w-7xl">
             <div
               className="flex-1 flex flex-col p-7 gap-9 rounded-lg transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-[0_0_35px_rgba(59,130,246,0.4)]"
