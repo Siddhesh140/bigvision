@@ -20,9 +20,9 @@ export async function submitForm(formData) {
   };
 
   try {
-    // Insert the data into the 'leads' table in your Supabase project
+    // --- FIX: Ensured the table name is lowercase to match Supabase standards ---
     const { data, error } = await supabase
-      .from('Leads')
+      .from('leads') // This must match your table name exactly
       .insert([leadData]);
 
     // If there was an error during the insert, throw it to be caught by the catch block
