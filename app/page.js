@@ -11,11 +11,21 @@ import './globals.css';
 
 export default function Home() {
   const servicesTitleRef = useRef(null);
+  const heroRef = useRef(null); // Ref for the hero section
+
   const { scrollYProgress } = useScroll({
     target: servicesTitleRef,
     offset: ["start end", "end start"]
   });
   const underlineScaleX = useTransform(scrollYProgress, [0, 0.5, 1], [0, 1, 0]);
+
+  // --- Re-added hooks for parallax animation ---
+  const { scrollYProgress: heroScrollYProgress } = useScroll({
+    target: heroRef,
+    offset: ["start start", "end start"]
+  });
+  const backgroundParallaxY = useTransform(heroScrollYProgress, [0, 1], [0, 200]); 
+  const contentParallaxY = useTransform(heroScrollYProgress, [0, 1], [0, -300]);
 
 
   return (
@@ -26,14 +36,13 @@ export default function Home() {
       >
         {/* Hero Section */}
         <div
+          ref={heroRef} // Added ref to the hero container
           className="relative overflow-hidden w-full"
           style={{ height: '1133px' }}
         >
           <motion.div
             className="absolute inset-0 z-10"
-            initial={{ x: 0 }}
-            animate={{ x: [0, -20, 0], y: [0, 10, 0] }}
-            transition={{ repeat: Infinity, duration: 30, ease: 'linear' }}
+            style={{ y: backgroundParallaxY }} // Apply parallax to background
           >
             <Image
               src="/Frame 3.svg"
@@ -58,9 +67,10 @@ export default function Home() {
             ></div>
           </motion.div>
 
-          {/* Hero Content Block */}
-          <div
+          {/* Hero Content Block with Parallax */}
+          <motion.div
             className="absolute z-40 top-[139px] left-1/2 -translate-x-1/2 w-full max-w-[880px] h-[357px] px-4"
+            style={{ y: contentParallaxY }} // Apply parallax to content
           >
             {/* Sliding Text Animation */}
             <div className="relative w-full h-auto">
@@ -88,8 +98,7 @@ export default function Home() {
                 </div>
             </div>
             
-            {/* Stats Section - Now responsive */}
-            <div className="absolute top-[273px] left-0 right-0 flex flex-col sm:flex-row justify-center items-center gap-12 sm:gap-24 mt-8 sm:mt-0">
+            <div className="absolute top-[273px] left-0 right-0 flex flex-col sm:flex-row justify-center items-center gap-12 sm:gap-48">
               <div className="flex flex-col items-center gap-2">
                 <p
                   className="font-bold text-4xl md:text-[3rem] text-transparent bg-clip-text"
@@ -119,7 +128,7 @@ export default function Home() {
                 </p>
               </div>
             </div>
-          </div>
+          </motion.div>
         </div>
 
         {/* Services Section */}
