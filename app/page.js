@@ -9,43 +9,6 @@ import Testimonials from './components/Testimonials';
 import WhyBigVision from './components/WhyBigVision';
 import './globals.css';
 
-// Animated headline component with responsive font sizes
-const AnimatedHeadline = ({ text }) => {
-  const words = text.split(" ");
-
-  const container = {
-    hidden: { opacity: 0 },
-    visible: (i = 1) => ({
-      opacity: 1,
-      transition: { staggerChildren: 0.12, delayChildren: 0.5 * i },
-    }),
-  };
-
-  const child = {
-    visible: { opacity: 1, y: 0, transition: { type: "spring", damping: 12, stiffness: 100 } },
-    hidden: { opacity: 0, y: 20, transition: { type: "spring", damping: 12, stiffness: 100 } },
-  };
-
-  return (
-    <motion.h1
-      className="text-center font-bold text-4xl md:text-5xl lg:text-[3.75rem] leading-tight uppercase text-transparent bg-clip-text overflow-hidden"
-      style={{ 
-        fontFamily: "'Integral CF', sans-serif", 
-        backgroundImage: 'linear-gradient(90deg, #FFFFFF 0%, #EBEBEB 32.21%, #7A7A7A 75%, #525252 99.52%)'
-      }}
-      variants={container}
-      initial="hidden"
-      animate="visible"
-    >
-      {words.map((word, index) => (
-        <motion.span key={index} variants={child} style={{ marginRight: "0.5rem", display: "inline-block" }}>
-          {word}
-        </motion.span>
-      ))}
-    </motion.h1>
-  );
-};
-
 export default function Home() {
   const servicesTitleRef = useRef(null);
   const { scrollYProgress } = useScroll({
@@ -56,7 +19,6 @@ export default function Home() {
 
   return (
     <>
-      {/* Main container is now full-width and centered */}
       <main
         className="relative mx-auto overflow-hidden w-full"
         style={{ backgroundColor: '#151515' }}
@@ -100,7 +62,31 @@ export default function Home() {
             className="absolute inset-0 z-40 flex flex-col items-center justify-center p-4"
           >
             <div className="w-full max-w-4xl flex flex-col items-center">
-                <AnimatedHeadline text="Where B2B Brand become industry authorities" />
+                {/* --- FIX: Restored the original sliding text animation --- */}
+                <div className="relative w-full h-auto">
+                    <div className="h-auto md:h-[3.75rem] overflow-hidden">
+                        <motion.h1
+                            initial={{ x: "-100%" }}
+                            animate={{ x: 0 }}
+                            transition={{ duration: 1.2, ease: [0.6, 0.01, -0.05, 0.95], delay: 0.1 }}
+                            className="text-center font-bold text-4xl md:text-[3.75rem] leading-tight uppercase text-transparent bg-clip-text"
+                            style={{ fontFamily: "'Integral CF', sans-serif", backgroundImage: 'linear-gradient(90deg, #FFFFFF 0%, #EBEBEB 32.21%, #7A7A7A 75%, #525252 99.52%)' }}
+                        >
+                            Where B2B Brand
+                        </motion.h1>
+                    </div>
+                    <div className="h-auto md:h-[3.75rem] overflow-hidden">
+                        <motion.h1
+                            initial={{ x: "100%" }}
+                            animate={{ x: 0 }}
+                            transition={{ duration: 1.2, ease: [0.6, 0.01, -0.05, 0.95], delay: 0.5 }}
+                            className="text-center font-bold text-4xl md:text-[3.75rem] leading-tight uppercase text-transparent bg-clip-text"
+                            style={{ fontFamily: "'Integral CF', sans-serif", backgroundImage: 'linear-gradient(90deg, #FFFFFF 0%, #EBEBEB 32.21%, #7A7A7A 75%, #525252 99.52%)' }}
+                        >
+                            become industry authorities
+                        </motion.h1>
+                    </div>
+                </div>
                 
                 {/* Stats stack on mobile, side-by-side on larger screens */}
                 <div className="flex flex-col sm:flex-row items-center justify-center gap-12 sm:gap-24 mt-24">
