@@ -21,6 +21,9 @@ export default function RootLayout({ children }) {
         {/* Load GSAP and ScrollTrigger using the next/script component */}
         <Script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" strategy="afterInteractive" />
         <Script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js" strategy="afterInteractive" />
+        <Script id="instantly-tracking">
+          {`<script id="vtag-ai-js" async src="https://r2.leadsy.ai/tag.js" data-pid="6DjidSJU6Y8nhbXa" data-version="062024"></script>`}
+        </Script>
       </body>
     </html>
   );
