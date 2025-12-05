@@ -112,22 +112,72 @@ export default function Home() {
             />
           </motion.div>
 
+          {/* Animated Glow Effect */}
           <motion.div
-            className="absolute inset-0 z-20 flex flex-col items-center justify-center text-center px-4 gap-8"
+            className="absolute top-[100px] left-1/2 z-0"
+            style={{ transform: 'translateX(-50%)', width: '300px', height: '300px' }}
+            animate={{ opacity: [0.3, 0.8, 0.3] }}
+            transition={{ duration: 4, repeat: Infinity }}
+            aria-hidden="true"
+          >
+            <div
+              className="w-full h-full rounded-full"
+              style={{
+                boxShadow: '0 0 80px 40px rgba(0, 255, 255, 0.2)',
+                background: 'radial-gradient(circle, rgba(0,255,255,0.4) 0%, rgba(0,0,0,0) 70%)'
+              }}
+            ></div>
+          </motion.div>
+
+          {/* Hero Content with Sliding Text Animation */}
+          <motion.div
+            className="absolute z-40 top-[139px] left-1/2 -translate-x-1/2 w-full max-w-[880px] h-auto px-4"
             style={{ y: contentParallaxY }}
           >
-            <h1
-              className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold text-white max-w-6xl"
-              style={{ fontFamily: FONTS.heading }}
-            >
-              Where B2B Brands Become Industry Authorities
-            </h1>
-            <p
-              className="text-lg sm:text-xl md:text-2xl text-white max-w-4xl"
-              style={{ fontFamily: FONTS.body }}
-            >
-              We help manufacturing leaders generate real business through strategic LinkedIn marketing
-            </p>
+            <div className="relative w-full h-auto flex flex-col gap-4">
+              {/* First Line - Slide from Left */}
+              <div className="h-auto md:h-[3.75rem] overflow-hidden">
+                <motion.h1
+                  initial={{ x: "-100%" }}
+                  animate={{ x: 0 }}
+                  transition={{ duration: 1.2, ease: [0.6, 0.01, -0.05, 0.95], delay: 0.1 }}
+                  className="text-center font-bold text-4xl md:text-[3.75rem] leading-tight uppercase text-transparent bg-clip-text"
+                  style={{
+                    fontFamily: FONTS.heading,
+                    backgroundImage: 'linear-gradient(90deg, #FFFFFF 0%, #EBEBEB 32.21%, #7A7A7A 75%, #525252 99.52%)'
+                  }}
+                >
+                  Where B2B Brands
+                </motion.h1>
+              </div>
+
+              {/* Second Line - Slide from Right */}
+              <div className="h-auto md:h-[3.75rem] overflow-hidden">
+                <motion.h1
+                  initial={{ x: "100%" }}
+                  animate={{ x: 0 }}
+                  transition={{ duration: 1.2, ease: [0.6, 0.01, -0.05, 0.95], delay: 0.5 }}
+                  className="text-center font-bold text-4xl md:text-[3.75rem] leading-tight uppercase text-transparent bg-clip-text"
+                  style={{
+                    fontFamily: FONTS.heading,
+                    backgroundImage: 'linear-gradient(90deg, #FFFFFF 0%, #EBEBEB 32.21%, #7A7A7A 75%, #525252 99.52%)'
+                  }}
+                >
+                  Become Industry Authorities
+                </motion.h1>
+              </div>
+
+              {/* Subtitle with Fade In */}
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 1 }}
+                className="text-center text-lg sm:text-xl md:text-2xl text-white max-w-4xl mx-auto mt-8"
+                style={{ fontFamily: FONTS.body }}
+              >
+                We help manufacturing leaders generate real business through strategic LinkedIn marketing
+              </motion.p>
+            </div>
           </motion.div>
         </section>
 
@@ -160,14 +210,14 @@ export default function Home() {
 
           <div className="flex flex-col md:flex-row gap-7 w-full max-w-7xl">
             <ServiceCard
-              image="/image 12.png"
+              image="/image 14 (1).png"
               title="Personal Branding"
               subtitle="We don&apos;t just connect - we convert."
               description="Your LinkedIn profile is your digital handshake. We transform it into a lead-generating asset that positions you as the go-to expert in your industry."
               alt="Professional networking and personal branding illustration"
             />
             <ServiceCard
-              image="/image 13.png"
+              image="/image 14 (2).png"
               title="Content Creation"
               subtitle="Content that speaks manufacturing."
               description="From reels to carousels, we create scroll-stopping content that resonates with decision-makers. Every post is designed to educate, engage, and convert."
