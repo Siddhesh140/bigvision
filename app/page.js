@@ -87,6 +87,94 @@ export default function Home() {
         </p>
       </Modal>
 
+      {/* JSON-LD Structured Data for SEO */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            "name": "BigVision",
+            "url": "https://bigvision.in",
+            "logo": "https://bigvision.in/logo.png",
+            "description": "B2B LinkedIn marketing agency specializing in lead generation, personal branding, and content creation for manufacturing and industrial brands.",
+            "contactPoint": {
+              "@type": "ContactPoint",
+              "telephone": "+91-9579662005",
+              "contactType": "Sales",
+              "areaServed": "IN",
+              "availableLanguage": "English"
+            },
+            "sameAs": [
+              "https://www.linkedin.com/company/bigvision"
+            ]
+          })
+        }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "LocalBusiness",
+            "name": "BigVision",
+            "image": "https://bigvision.in/og-image.png",
+            "description": "Transform your B2B manufacturing brand into a lead-generating powerhouse with expert LinkedIn marketing.",
+            "address": {
+              "@type": "PostalAddress",
+              "addressCountry": "IN"
+            },
+            "telephone": "+91-9579662005",
+            "priceRange": "$$"
+          })
+        }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Service",
+            "serviceType": "B2B LinkedIn Marketing",
+            "provider": {
+              "@type": "Organization",
+              "name": "BigVision"
+            },
+            "areaServed": {
+              "@type": "Country",
+              "name": "India"
+            },
+            "hasOfferCatalog": {
+              "@type": "OfferCatalog",
+              "name": "LinkedIn Marketing Services",
+              "itemListElement": [
+                {
+                  "@type": "Offer",
+                  "itemOffered": {
+                    "@type": "Service",
+                    "name": "Personal Branding"
+                  }
+                },
+                {
+                  "@type": "Offer",
+                  "itemOffered": {
+                    "@type": "Service",
+                    "name": "Content Creation"
+                  }
+                },
+                {
+                  "@type": "Offer",
+                  "itemOffered": {
+                    "@type": "Service",
+                    "name": "Lead Generation"
+                  }
+                }
+              ]
+            }
+          })
+        }}
+      />
+
       <main
         className="relative mx-auto overflow-hidden w-full"
         style={{ backgroundColor: COLORS.background.primary }}
