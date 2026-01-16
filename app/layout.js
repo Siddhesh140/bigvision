@@ -63,6 +63,9 @@ export const metadata = {
       'max-snippet': -1,
     },
   },
+  verification: {
+    google: 'KJdtzuNUqyOgRxtgmOkxId8ClVSHQJ3mmn2QoOJEo9M',
+  },
   icons: {
     icon: [
       { url: '/Vector.svg', type: 'image/svg+xml' },
