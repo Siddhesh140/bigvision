@@ -2,6 +2,7 @@
 import { Inter } from 'next/font/google';
 import Script from 'next/script';
 import Navbar from './components/Navbar';
+import SmoothScroll from './components/SmoothScroll';
 import './globals.css';
 
 const inter = Inter({ subsets: ['latin'], display: 'swap' });
@@ -88,6 +89,7 @@ export default function RootLayout({ children }) {
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
       </head>
       <body className={`${inter.className} bg-black`}>
+        <SmoothScroll />
         <Navbar />
         {children}
 
