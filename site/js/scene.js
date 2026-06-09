@@ -38,26 +38,26 @@ camera.position.set(0, 0.8, 14);
 
 /* ---------- lights ---------- */
 
-scene.add(new THREE.AmbientLight(0x8aa2cc, 0.35));
+scene.add(new THREE.AmbientLight(0x8aa2cc, 0.22));
 
-const keyLight = new THREE.DirectionalLight(0x9db8e8, 0.7);
+const keyLight = new THREE.DirectionalLight(0x9db8e8, 0.45);
 keyLight.position.set(-6, 9, 7);
 scene.add(keyLight);
 
-// electric glow buried in the cloud deck
-const cloudGlow = new THREE.PointLight(0x1d6ff2, 30, 30, 1.6);
-cloudGlow.position.set(0, -6.5, 0.5);
+// subtle electric glow buried in the cloud deck (the beam's source)
+const cloudGlow = new THREE.PointLight(0x1d6ff2, 9, 18, 1.8);
+cloudGlow.position.set(0, -5.6, 0.4);
 scene.add(cloudGlow);
 
-// signal light aimed up at the logo
-const signal = new THREE.SpotLight(0x38bdf8, 120, 30, 0.6, 1);
-signal.position.set(0, -5, 1.5);
+// narrow signal light aimed up at the logo
+const signal = new THREE.SpotLight(0x38bdf8, 38, 26, 0.32, 0.9);
+signal.position.set(0, -5.6, 0.4);
 scene.add(signal);
 signal.target.position.set(0, 2.2, 0);
 scene.add(signal.target);
 
 // soft fill near the logo
-const fill = new THREE.PointLight(0x4f7df0, 14, 16);
+const fill = new THREE.PointLight(0x4f7df0, 5, 14);
 fill.position.set(0, 4.5, 5);
 scene.add(fill);
 
@@ -115,13 +115,15 @@ function makeCloudTexture(seed) {
   const ctx = c.getContext('2d');
   let s = seed;
   const rnd = () => { s = (s * 16807) % 2147483647; return (s - 1) / 2147483646; };
-  for (let i = 0; i < 42; i++) {
-    const x = sz * (0.18 + rnd() * 0.64);
-    const y = sz * (0.3 + rnd() * 0.4);
-    const r = sz * (0.06 + rnd() * 0.16);
+  // horizontal band of overlapping puffs → stratus-like wisp, not a round blob
+  for (let i = 0; i < 64; i++) {
+    const x = sz * (0.1 + rnd() * 0.8);
+    const y = sz * (0.38 + rnd() * 0.26 + Math.sin(x / sz * Math.PI) * -0.06);
+    const r = sz * (0.05 + rnd() * 0.13);
     const g = ctx.createRadialGradient(x, y, 0, x, y, r);
-    const a = 0.05 + rnd() * 0.1;
+    const a = 0.04 + rnd() * 0.09;
     g.addColorStop(0, `rgba(255,255,255,${a})`);
+    g.addColorStop(0.55, `rgba(255,255,255,${a * 0.45})`);
     g.addColorStop(1, 'rgba(255,255,255,0)');
     ctx.fillStyle = g;
     ctx.fillRect(0, 0, sz, sz);
@@ -146,7 +148,7 @@ function addCloud(x, y, z, scale, tint, opacity) {
   });
   const sp = new THREE.Sprite(mat);
   sp.position.set(x, y, z);
-  sp.scale.setScalar(scale);
+  sp.scale.set(scale * 1.9, scale * 0.8, 1); // wide, flat cloud bodies
   sp.userData = {
     baseX: x,
     drift: 0.12 + Math.random() * 0.3,
@@ -184,6 +186,7 @@ const LOGO_SVG = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 29"><p
 const logoGroup = new THREE.Group();
 logoGroup.position.set(0, 2.2, 0);
 scene.add(logoGroup);
+let logoMat = null;
 
 {
   const data = new SVGLoader().parse(LOGO_SVG);
@@ -202,8 +205,9 @@ scene.add(logoGroup);
     metalness: 0.9,
     roughness: 0.24,
     emissive: 0x1d4ed8,
-    emissiveIntensity: 0.34,
+    emissiveIntensity: 0.08,
   });
+  logoMat = mat;
   const mesh = new THREE.Mesh(geo, mat);
   const k = 0.155;
   mesh.scale.set(k, -k, k); // flip Y (SVG space is y-down)
@@ -212,23 +216,48 @@ scene.add(logoGroup);
 
 /* ---------- signal beam ---------- */
 
+// The signal rises from a single bright point in the clouds up to the logo.
+const BEAM_SRC = new THREE.Vector3(0, -5.6, 0.4); // source point (in cloud deck)
+const BEAM_DST = new THREE.Vector3(0, 2.2, 0);    // logo
+const beamLen = BEAM_SRC.distanceTo(BEAM_DST);
+
 const beamGroup = new THREE.Group();
-beamGroup.position.set(0, -1.6, -0.4);
+beamGroup.position.copy(BEAM_SRC).add(BEAM_DST).multiplyScalar(0.5);
+beamGroup.lookAt(BEAM_DST);
+beamGroup.rotateX(Math.PI / 2); // cylinder Y-axis onto src→dst line
 scene.add(beamGroup);
 
+// outer haze — barely-there, widens toward the logo
 const beamOuterMat = new THREE.MeshBasicMaterial({
-  color: 0x38bdf8, transparent: true, opacity: 0.06,
+  color: 0x38bdf8, transparent: true, opacity: 0.03,
   blending: THREE.AdditiveBlending, side: THREE.DoubleSide, depthWrite: false,
 });
-const beamOuter = new THREE.Mesh(new THREE.CylinderGeometry(3.6, 0.5, 10, 48, 1, true), beamOuterMat);
+const beamOuter = new THREE.Mesh(new THREE.CylinderGeometry(1.05, 0.07, beamLen, 40, 1, true), beamOuterMat);
 beamGroup.add(beamOuter);
 
+// tight bright core
 const beamInnerMat = new THREE.MeshBasicMaterial({
-  color: 0x7dd3fc, transparent: true, opacity: 0.11,
+  color: 0x7dd3fc, transparent: true, opacity: 0.1,
   blending: THREE.AdditiveBlending, side: THREE.DoubleSide, depthWrite: false,
 });
-const beamInner = new THREE.Mesh(new THREE.CylinderGeometry(1.7, 0.25, 10, 32, 1, true), beamInnerMat);
+const beamInner = new THREE.Mesh(new THREE.CylinderGeometry(0.32, 0.035, beamLen, 28, 1, true), beamInnerMat);
 beamGroup.add(beamInner);
+
+// glowing point where the light is born
+const sourceOrbMat = new THREE.MeshBasicMaterial({ color: 0xbfe6ff });
+const sourceOrb = new THREE.Mesh(new THREE.SphereGeometry(0.16, 16, 16), sourceOrbMat);
+sourceOrb.position.copy(BEAM_SRC);
+scene.add(sourceOrb);
+
+// pulse of light that travels up the beam and ignites the logo
+const pulseOrbMat = new THREE.MeshBasicMaterial({
+  color: 0xd6efff, transparent: true, opacity: 0.95,
+  blending: THREE.AdditiveBlending, depthWrite: false,
+});
+const pulseOrb = new THREE.Mesh(new THREE.SphereGeometry(0.11, 12, 12), pulseOrbMat);
+scene.add(pulseOrb);
+const PULSE_PERIOD = 3.2;   // seconds per pulse cycle
+const PULSE_TRAVEL = 0.62;  // fraction of cycle spent travelling
 
 /* ---------- post-processing ---------- */
 
@@ -236,9 +265,9 @@ const composer = new EffectComposer(renderer);
 composer.addPass(new RenderPass(scene, camera));
 const bloom = new UnrealBloomPass(
   new THREE.Vector2(window.innerWidth, window.innerHeight),
-  isMobile ? 0.65 : 0.9, // strength
-  0.85,                  // radius
-  0.12                   // threshold
+  isMobile ? 0.4 : 0.55, // strength
+  0.7,                   // radius
+  0.3                    // threshold
 );
 composer.addPass(bloom);
 composer.addPass(new OutputPass());
@@ -299,11 +328,32 @@ function tick() {
   logoGroup.rotation.y = lerp(logoGroup.rotation.y, pointer.x * 0.4 + Math.sin(t * 0.4) * 0.06, 0.06);
   logoGroup.rotation.x = lerp(logoGroup.rotation.x, -pointer.y * 0.16, 0.06);
 
-  // ----- beam pulse -----
-  const pulse = 0.5 + Math.sin(t * 1.3) * 0.5;
-  beamOuterMat.opacity = 0.045 + pulse * 0.04;
-  beamInnerMat.opacity = 0.09 + pulse * 0.06;
-  cloudGlow.intensity = 24 + pulse * 16;
+  // ----- signal: pulse travels from the source up to the logo -----
+  const cycle = (t % PULSE_PERIOD) / PULSE_PERIOD; // 0..1
+  let flare = 0;
+  if (cycle < PULSE_TRAVEL) {
+    // travelling: orb moves up the beam, beam brightens behind it
+    const u = cycle / PULSE_TRAVEL;
+    pulseOrb.visible = true;
+    pulseOrb.position.lerpVectors(BEAM_SRC, BEAM_DST, u);
+    pulseOrbMat.opacity = 0.9 * (1 - u * 0.35);
+    beamInnerMat.opacity = 0.06 + u * 0.07;
+    beamOuterMat.opacity = 0.02 + u * 0.025;
+  } else {
+    // arrived: logo flares, then decays until the next pulse
+    const v = (cycle - PULSE_TRAVEL) / (1 - PULSE_TRAVEL); // 0..1
+    pulseOrb.visible = false;
+    flare = Math.pow(1 - v, 2.2);
+    beamInnerMat.opacity = 0.05 + flare * 0.05;
+    beamOuterMat.opacity = 0.018 + flare * 0.02;
+  }
+  if (logoMat) logoMat.emissiveIntensity = 0.08 + flare * 0.85;
+  fill.intensity = 4 + flare * 14;
+
+  // source point breathes gently
+  const breathe = 0.85 + Math.sin(t * 2.1) * 0.15;
+  sourceOrb.scale.setScalar(breathe);
+  cloudGlow.intensity = 7 + breathe * 3 + flare * 8;
 
   // ----- clouds drift -----
   for (const sp of cloudSprites) {
