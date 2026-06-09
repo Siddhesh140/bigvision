@@ -207,7 +207,7 @@ export default function Home() {
                 <motion.h1
                   initial={{ x: "-100%", filter: 'blur(14px)', opacity: 0 }}
                   animate={{ x: 0, filter: 'blur(0px)', opacity: 1 }}
-                  transition={{ duration: 1.4, ease: [0.6, 0.01, -0.05, 0.95], delay: 0.3 }}
+                  transition={{ duration: 1.4, ease: [0.16, 1, 0.3, 1], delay: 0.3 }}
                   className="text-center font-bold text-4xl md:text-[3.75rem] leading-tight uppercase text-transparent bg-clip-text"
                   style={{
                     fontFamily: FONTS.heading,
@@ -223,7 +223,7 @@ export default function Home() {
                 <motion.h1
                   initial={{ x: "100%", filter: 'blur(14px)', opacity: 0 }}
                   animate={{ x: 0, filter: 'blur(0px)', opacity: 1 }}
-                  transition={{ duration: 1.4, ease: [0.6, 0.01, -0.05, 0.95], delay: 0.7 }}
+                  transition={{ duration: 1.4, ease: [0.16, 1, 0.3, 1], delay: 0.7 }}
                   className="text-center font-bold text-4xl md:text-[3.75rem] leading-tight uppercase text-transparent bg-clip-text"
                   style={{
                     fontFamily: FONTS.heading,

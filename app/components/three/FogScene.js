@@ -67,33 +67,38 @@ const fragmentShader = /* glsl */ `
     vec2 p = (uv - 0.5);
     p.x *= uResolution.x / uResolution.y;
 
-    float t = uTime * 0.04;
+    float t = uTime * 0.05;
+
+    // base frequency — high enough that several billows fill the screen
+    float freq = 3.2;
 
     // parallax + slow drift
-    vec2 drift = vec2(t, t * 0.6) + uMouse * 0.15;
+    vec2 drift = vec2(t, t * 0.6) + uMouse * 0.2;
 
     // domain warping for organic, billowing fog
-    vec2 q = vec2(fbm(p * 1.5 + drift),
-                  fbm(p * 1.5 + drift + vec2(5.2, 1.3)));
-    vec2 r = vec2(fbm(p * 1.5 + 2.0 * q + vec2(1.7, 9.2) + t),
-                  fbm(p * 1.5 + 2.0 * q + vec2(8.3, 2.8) - t));
-    float fog = fbm(p * 1.5 + 2.5 * r + drift);
-    fog = clamp(fog * 1.15, 0.0, 1.0);
+    vec2 q = vec2(fbm(p * freq + drift),
+                  fbm(p * freq + drift + vec2(5.2, 1.3)));
+    vec2 r = vec2(fbm(p * freq + 1.8 * q + vec2(1.7, 9.2) + t * 0.6),
+                  fbm(p * freq + 1.8 * q + vec2(8.3, 2.8) - t * 0.6));
+    float fog = fbm(p * freq + 2.2 * r + drift);
+
+    // contrast: crush the lows to dark negative space, keep bright wisps
+    fog = clamp(pow(fog * 1.25, 1.6), 0.0, 1.0);
 
     // BigVision palette: deep navy -> royal blue -> cyan highlights
-    vec3 deep  = vec3(0.035, 0.043, 0.078);   // ~#090b14
+    vec3 deep  = vec3(0.020, 0.027, 0.055);   // near-black navy
     vec3 blue  = vec3(0.133, 0.075, 0.768);   // ~#2213C4
     vec3 cyan  = vec3(0.192, 0.635, 0.953);   // ~#31A2F3
 
-    vec3 color = mix(deep, blue, smoothstep(0.25, 0.75, fog));
-    color = mix(color, cyan, smoothstep(0.65, 1.0, fog) * 0.6);
+    vec3 color = mix(deep, blue, smoothstep(0.30, 0.85, fog));
+    color = mix(color, cyan, smoothstep(0.70, 1.0, fog));
 
     // pulsing cyan core glow (echoes the brand's centre glow)
     float pulse = 0.5 + 0.5 * sin(uTime * 0.6);
-    vec2  core = uMouse * 0.1;
+    vec2  core = uMouse * 0.12;
     float d = length(p - core);
-    float glow = exp(-d * 2.2) * (0.35 + 0.25 * pulse);
-    color += cyan * glow * (0.6 + 0.4 * fog);
+    float glow = exp(-d * 1.8) * (0.30 + 0.22 * pulse);
+    color += cyan * glow * (0.5 + 0.5 * fog);
 
     // darken toward the bottom so headline text stays legible
     color *= mix(1.05, 0.45, smoothstep(0.15, 1.0, uv.y));
