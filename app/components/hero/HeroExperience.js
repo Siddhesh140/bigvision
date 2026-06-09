@@ -141,13 +141,15 @@ export default function HeroExperience() {
           style={{ opacity: reduced ? 1 : textOpacity, y: reduced ? 0 : textY }}
         >
           <motion.h1
-            className="text-center font-bold text-white uppercase leading-[0.95] max-w-[15ch] text-5xl sm:text-7xl md:text-8xl"
+            className="text-center font-bold text-white uppercase leading-[0.92] text-5xl sm:text-7xl md:text-8xl"
             style={{ fontFamily: FONTS.heading }}
             initial={reduced ? false : { y: 60, opacity: 0, filter: 'blur(12px)' }}
             animate={reduced ? false : { y: 0, opacity: 1, filter: 'blur(0px)' }}
             transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
           >
-            Where B2B Brands Become Industry Authorities
+            <span className="block whitespace-nowrap">Where B2B Brands</span>
+            <span className="block whitespace-nowrap">Become Industry</span>
+            <span className="block whitespace-nowrap">Authorities</span>
           </motion.h1>
 
           <motion.div

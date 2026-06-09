@@ -169,7 +169,7 @@ export default function Home() {
       />
 
       <main
-        className="relative mx-auto overflow-hidden w-full"
+        className="relative mx-auto w-full"
         style={{ backgroundColor: COLORS.background.primary }}
       >
         {/* Hero Section */}
