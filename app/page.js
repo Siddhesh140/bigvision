@@ -9,6 +9,7 @@ import Modal from './components/Modal';
 import { CheckIcon, CalendarIcon, UserIcon, MailIcon, PhoneIcon, CompanyIcon, ChatIcon, CalendarGradientIcon } from './components/icons';
 import { ServiceCard, StatCard, FeatureCard, TestimonialCard, InfoCard, CTACard } from './components/cards/cards';
 import GradientText from './components/cards/GradientText';
+import HeroBackground from './components/three/HeroBackground';
 import { FONTS, COLORS, EFFECTS } from './constants/styles';
 import { testimonials } from './data/testimonials';
 import { validateEmail, validatePhone, validateName, validateCompany } from './utils/validation';
@@ -186,35 +187,13 @@ export default function Home() {
           style={{ height: '1133px' }}
           aria-label="Hero section"
         >
+          {/* Cinematic WebGL fog background (static poster fallback inside) */}
           <motion.div
             className="absolute inset-0 z-10"
             style={{ y: backgroundParallaxY }}
-          >
-            <Image
-              src="/Frame 3.svg"
-              alt="Abstract background design"
-              fill
-              style={{ objectFit: 'cover' }}
-              priority
-              sizes="100vw"
-            />
-          </motion.div>
-
-          {/* Animated Glow Effect */}
-          <motion.div
-            className="absolute top-[100px] left-1/2 z-0"
-            style={{ transform: 'translateX(-50%)', width: '300px', height: '300px' }}
-            animate={{ opacity: [0.3, 0.8, 0.3] }}
-            transition={{ duration: 4, repeat: Infinity }}
             aria-hidden="true"
           >
-            <div
-              className="w-full h-full rounded-full"
-              style={{
-                boxShadow: '0 0 80px 40px rgba(0, 255, 255, 0.2)',
-                background: 'radial-gradient(circle, rgba(0,255,255,0.4) 0%, rgba(0,0,0,0) 70%)'
-              }}
-            ></div>
+            <HeroBackground />
           </motion.div>
 
           {/* Hero Content with Sliding Text Animation */}
@@ -226,9 +205,9 @@ export default function Home() {
               {/* First Line - Slide from Left */}
               <div className="h-auto md:h-[3.75rem] overflow-hidden">
                 <motion.h1
-                  initial={{ x: "-100%" }}
-                  animate={{ x: 0 }}
-                  transition={{ duration: 1.2, ease: [0.6, 0.01, -0.05, 0.95], delay: 0.1 }}
+                  initial={{ x: "-100%", filter: 'blur(14px)', opacity: 0 }}
+                  animate={{ x: 0, filter: 'blur(0px)', opacity: 1 }}
+                  transition={{ duration: 1.4, ease: [0.6, 0.01, -0.05, 0.95], delay: 0.3 }}
                   className="text-center font-bold text-4xl md:text-[3.75rem] leading-tight uppercase text-transparent bg-clip-text"
                   style={{
                     fontFamily: FONTS.heading,
@@ -242,9 +221,9 @@ export default function Home() {
               {/* Second Line - Slide from Right */}
               <div className="h-auto md:h-[3.75rem] overflow-hidden">
                 <motion.h1
-                  initial={{ x: "100%" }}
-                  animate={{ x: 0 }}
-                  transition={{ duration: 1.2, ease: [0.6, 0.01, -0.05, 0.95], delay: 0.5 }}
+                  initial={{ x: "100%", filter: 'blur(14px)', opacity: 0 }}
+                  animate={{ x: 0, filter: 'blur(0px)', opacity: 1 }}
+                  transition={{ duration: 1.4, ease: [0.6, 0.01, -0.05, 0.95], delay: 0.7 }}
                   className="text-center font-bold text-4xl md:text-[3.75rem] leading-tight uppercase text-transparent bg-clip-text"
                   style={{
                     fontFamily: FONTS.heading,
