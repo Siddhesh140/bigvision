@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Big Vision — Where B2B Brands Become Industry Authorities</title>
+  <meta name="description" content="Premium B2B LinkedIn marketing for manufacturers. Personal branding, content creation and lead generation that turns industrial expertise into pipeline. 4000+ leads generated." />
+  <link rel="icon" href="assets/Vector.svg" type="image/svg+xml" />
+
+  <!-- Fonts: same families as brand (Integral CF first if installed, Montserrat fallback) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Roboto+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="css/style.css" />
+
+  <!-- Three.js via import map -->
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+    }
+  }
+  </script>
+</head>
+<body>
+
+  <!-- ============ PRELOADER ============ -->
+  <div id="preloader" aria-hidden="true">
+    <div class="preloader-inner">
+      <svg class="preloader-logo" viewBox="0 0 52 29" xmlns="http://www.w3.org/2000/svg">
+        <path d="M38.4877 0.500349L25.5117 9.79621L12.5339 0.500695C8.35591 0.462985 0 3.4647 0 15.7732C12.5339 8.5368 25.5108 21.8932 25.5108 28.5C25.5108 21.8932 38.4877 8.53646 51.0216 15.7729C51.0216 3.46435 42.6657 0.462639 38.4877 0.500349Z" fill="url(#plg)"/>
+        <defs>
+          <linearGradient id="plg" x1="26" y1="0" x2="26" y2="29" gradientUnits="userSpaceOnUse">
+            <stop stop-color="#31A2F3"/><stop offset="1" stop-color="#2213C4"/>
+          </linearGradient>
+        </defs>
+      </svg>
+      <div class="preloader-word">BIG&nbsp;VISION</div>
+      <div class="preloader-count"><span id="pre-count">0</span></div>
+    </div>
+  </div>
+
+  <!-- ============ FIXED LAYERS ============ -->
+  <canvas id="webgl"></canvas>
+  <div class="grain" aria-hidden="true"></div>
+  <div class="cursor" aria-hidden="true"><div class="cursor-dot"></div><div class="cursor-ring"></div></div>
+
+  <!-- Scroll progress rail -->
+  <div class="rail" aria-hidden="true">
+    <div class="rail-line"><div class="rail-fill" id="rail-fill"></div></div>
+  </div>
+
+  <!-- ============ NAV ============ -->
+  <header id="nav">
+    <a class="nav-brand" href="#top" data-scrollto="#top" data-magnetic>
+      <img src="assets/Vector.svg" alt="Big Vision logo" width="40" height="22" />
+      <span>Big&nbsp;Vision</span>
+    </a>
+    <nav class="nav-links" aria-label="Main navigation">
+      <a href="#services" data-scrollto="#services">Services</a>
+      <a href="#proof" data-scrollto="#proof">Results</a>
+      <a href="#different" data-scrollto="#different">Why Us</a>
+      <a href="#voices" data-scrollto="#voices">Clients</a>
+    </nav>
+    <a class="btn btn-primary nav-cta" href="#contact" data-scrollto="#contact" data-magnetic>Book a Call</a>
+    <button class="nav-burger" id="burger" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span>
+    </button>
+  </header>
+
+  <!-- Mobile menu -->
+  <div id="mobile-menu" aria-hidden="true">
+    <a href="#services" data-scrollto="#services">Services</a>
+    <a href="#proof" data-scrollto="#proof">Results</a>
+    <a href="#different" data-scrollto="#different">Why Us</a>
+    <a href="#voices" data-scrollto="#voices">Clients</a>
+    <a class="btn btn-primary" href="#contact" data-scrollto="#contact">Book a Call</a>
+  </div>
+
+  <main id="top">
+
+    <!-- ============ ACT 1 · HERO ============ -->
+    <section id="hero" class="act-transparent">
+      <div class="hero-content">
+        <p class="hero-eyebrow reveal-fade"><span class="pulse-dot"></span>B2B LinkedIn Marketing for Manufacturers</p>
+        <h1 class="hero-title">
+          <span class="line"><span class="split-chars">Where B2B brands</span></span>
+          <span class="line accent"><span class="split-chars">become industry</span></span>
+          <span class="line"><span class="split-chars">authorities</span></span>
+        </h1>
+        <p class="hero-sub reveal-fade">We help manufacturing leaders turn deep industrial expertise into authority, pipeline and revenue.</p>
+        <div class="hero-ctas reveal-fade">
+          <a class="btn btn-primary" href="#contact" data-scrollto="#contact" data-magnetic>Book a Strategy Call</a>
+          <a class="btn btn-ghost" href="#services" data-scrollto="#services" data-magnetic>See What We Do</a>
+        </div>
+      </div>
+      <div class="scroll-cue" aria-hidden="true">
+        <span>Scroll to dive</span>
+        <div class="cue-track"><div class="cue-dot"></div></div>
+      </div>
+    </section>
+
+    <!-- ============ ACT 2 · THE DIVE ============ -->
+    <section id="dive" class="act-transparent">
+      <div class="dive-stage">
+        <p class="dive-line" data-dive="0">Your factory makes <em>world-class</em> products.</p>
+        <p class="dive-line" data-dive="1">But online&nbsp;— <em>you're invisible.</em></p>
+        <p class="dive-line" data-dive="2">Let's <em>change</em> that.</p>
+      </div>
+    </section>
+
+    <!-- ============ MARQUEE ============ -->
+    <div class="marquee" aria-hidden="true">
+      <div class="marquee-track">
+        <!-- duplicated by JS -->
+        <span>Automotive</span><i></i><span>Aerospace</span><i></i><span>Tooling</span><i></i>
+        <span>Robotics</span><i></i><span>X-Ray Systems</span><i></i><span>Industrial SaaS</span><i></i>
+        <span>CNC Machining</span><i></i><span>Heavy Engineering</span><i></i><span>MSME · SME</span><i></i>
+        <span>Factory Tech</span><i></i>
+      </div>
+    </div>
+
+    <!-- ============ ACT 3 · SERVICES (horizontal) ============ -->
+    <section id="services" class="act-solid">
+      <div class="services-intro">
+        <p class="kicker">01 — What we do</p>
+        <h2 class="h2 split-words">Built to make you unmissable</h2>
+      </div>
+      <div class="services-viewport">
+        <div class="services-track">
+          <article class="service-panel">
+            <div class="service-num">01</div>
+            <div class="service-media"><img src="assets/image 14 (1).png" alt="Personal branding illustration" /></div>
+            <div class="service-body">
+              <h3>Personal Branding</h3>
+              <p class="service-tag">We don't just connect — we convert.</p>
+              <p>Your LinkedIn profile is your digital handshake. We transform it into a lead-generating asset that positions you as the go-to expert in your industry.</p>
+            </div>
+          </article>
+          <article class="service-panel">
+            <div class="service-num">02</div>
+            <div class="service-media"><img src="assets/image 14 (2).png" alt="Content creation illustration" /></div>
+            <div class="service-body">
+              <h3>Content Creation</h3>
+              <p class="service-tag">Content that speaks manufacturing.</p>
+              <p>From reels to carousels, we create scroll-stopping content that resonates with decision-makers. Every post is designed to educate, engage and convert.</p>
+            </div>
+          </article>
+          <article class="service-panel">
+            <div class="service-num">03</div>
+            <div class="service-media"><img src="assets/image 14.png" alt="Lead generation illustration" /></div>
+            <div class="service-body">
+              <h3>Lead Generation</h3>
+              <p class="service-tag">Qualified leads, not just likes.</p>
+              <p>Content that speaks your customers' language — thought-leadership tailored to your brand and buyer, engineered for conversions.</p>
+            </div>
+          </article>
+          <article class="service-panel service-panel-end">
+            <p class="end-line">One partner.<br/>One plan.<br/><em>All execution.</em></p>
+            <a class="btn btn-primary" href="#contact" data-scrollto="#contact" data-magnetic>Start With a Call</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ ACT 4 · PROOF ============ -->
+    <section id="proof" class="act-solid">
+      <p class="kicker">02 — The numbers</p>
+      <h2 class="h2 split-words">Proof, not promises</h2>
+      <div class="stats">
+        <div class="stat">
+          <div class="stat-value"><span class="count" data-count="4000">0</span><span class="stat-suffix">+</span></div>
+          <p>B2B leads generated</p>
+        </div>
+        <div class="stat">
+          <div class="stat-value"><span class="count" data-count="12">0</span><span class="stat-suffix">+</span></div>
+          <p>Brands scaled</p>
+        </div>
+        <div class="stat">
+          <div class="stat-value"><span class="count" data-count="75">0</span><span class="stat-suffix">%+</span></div>
+          <p>Conversion rate</p>
+        </div>
+      </div>
+      <div class="proof-banner">
+        <img src="assets/image15.png" alt="Team collaborating on strategy" />
+        <div class="proof-banner-text">
+          <h3>We make social media work like sales.</h3>
+          <p>Strategic. Targeted. Results-driven.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ ACT 5 · WHO / DIFFERENT ============ -->
+    <section id="different" class="act-solid">
+      <p class="kicker">03 — The fit</p>
+      <h2 class="h2 split-words">Manufacturing is our language</h2>
+      <div class="split">
+        <div class="split-card">
+          <h3>Who we work with</h3>
+          <ul>
+            <li>Manufacturing — automotive, aerospace, tooling, X-ray, robotics</li>
+            <li>Industrial SaaS &amp; tech for factories</li>
+            <li>MSME / SME founders targeting global growth</li>
+            <li>Founders &amp; MDs building a serious LinkedIn presence</li>
+          </ul>
+        </div>
+        <div class="split-card highlight">
+          <h3>What makes us different</h3>
+          <ul>
+            <li>We understand how industrial buying works</li>
+            <li>We speak manufacturing — no generic marketing</li>
+            <li>We treat your brand like it's our own</li>
+            <li>We care more about conversions than clicks</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ ACT 6 · TESTIMONIALS ============ -->
+    <section id="voices" class="act-solid">
+      <p class="kicker">04 — Client wins</p>
+      <h2 class="h2 split-words">Real results, real leaders</h2>
+      <div class="voices-grid">
+        <figure class="voice-card tilt">
+          <blockquote>“Fresh content, every week — without lifting a finger. I finally stopped worrying about what to post.”</blockquote>
+          <figcaption>
+            <img src="assets/karthikeyan jawahar.jpeg" alt="Karthikeyan Jawahar" />
+            <div><strong>Karthikeyan Jawahar</strong><span>Director, Karma Innovations</span></div>
+          </figcaption>
+        </figure>
+        <figure class="voice-card tilt">
+          <blockquote>“They turn raw ideas into strong content that brings real leads. That's the difference.”</blockquote>
+          <figcaption>
+            <img src="assets/anand mulay.jpeg" alt="Anand Mulay" />
+            <div><strong>Anand Mulay</strong><span>MD, Renuka Tools</span></div>
+          </figcaption>
+        </figure>
+        <figure class="voice-card tilt">
+          <blockquote>“Earlier, I avoided social media. Now it works quietly in the background — just like a good machine should.”</blockquote>
+          <figcaption>
+            <img src="assets/dinesh alone.jpeg" alt="Dinesh Alone" />
+            <div><strong>Dinesh Alone</strong><span>Director, Vibex Machines</span></div>
+          </figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- ============ ACT 7 · CTA (back above the clouds) ============ -->
+    <section id="contact" class="act-transparent">
+      <div class="cta-inner">
+        <p class="kicker">05 — Next step</p>
+        <h2 class="cta-title">
+          <span class="line"><span class="split-chars">You built the company.</span></span>
+          <span class="line accent"><span class="split-chars">Now be seen.</span></span>
+        </h2>
+        <p class="cta-sub">Free strategy call. No commitment. We'll map exactly how LinkedIn becomes your best salesperson.</p>
+
+        <form id="lead-form" class="lead-form" novalidate>
+          <div class="form-row">
+            <input type="text" name="name" placeholder="Your name" required minlength="2" />
+            <input type="text" name="company" placeholder="Company" required minlength="2" />
+          </div>
+          <div class="form-row">
+            <input type="email" name="email" placeholder="Email" required />
+            <input type="tel" name="phone" placeholder="Phone" required minlength="7" />
+          </div>
+          <button class="btn btn-primary btn-wide" type="submit" data-magnetic>Request My Strategy Call</button>
+          <p class="form-note">Submits via WhatsApp — we reply within 24 hours.</p>
+        </form>
+
+        <a class="cta-whatsapp" href="https://wa.me/919579662005" target="_blank" rel="noopener noreferrer">or message us directly on WhatsApp →</a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer>
+    <div class="footer-brand">
+      <img src="assets/Vector.svg" alt="Big Vision logo" width="44" height="24" />
+      <span>Big&nbsp;Vision</span>
+    </div>
+    <p class="footer-tag">Where B2B brands become industry authorities.</p>
+    <div class="footer-links">
+      <a href="https://www.linkedin.com/company/bigvision" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      <a href="https://wa.me/919579662005" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+      <a href="tel:+919579662005">+91 95796 62005</a>
+    </div>
+    <p class="footer-copy">© <span id="year"></span> Big Vision. All rights reserved.</p>
+  </footer>
+
+  <!-- Libraries -->
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.min.js"></script>
+
+  <script type="module" src="js/scene.js"></script>
+  <script src="js/main.js" defer></script>
+</body>
+</html>
