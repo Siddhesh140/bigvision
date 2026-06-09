@@ -38,6 +38,9 @@ export default function Home() {
   });
   const backgroundParallaxY = useTransform(heroScrollYProgress, [0, 1], [0, 200]);
   const contentParallaxY = useTransform(heroScrollYProgress, [0, 1], [0, -300]);
+  // Scroll-exit: the scene dims and the words lift away as the hero departs
+  const heroBgOpacity = useTransform(heroScrollYProgress, [0, 0.9], [1, 0.4]);
+  const heroContentOpacity = useTransform(heroScrollYProgress, [0, 0.55], [1, 0]);
 
   // Form submission handler
   const handleFormSubmit = async (formData) => {
@@ -190,7 +193,7 @@ export default function Home() {
           {/* "Sunrise of Authority" cinematic hero background */}
           <motion.div
             className="absolute inset-0 z-10"
-            style={{ y: backgroundParallaxY }}
+            style={{ y: backgroundParallaxY, opacity: heroBgOpacity }}
             aria-hidden="true"
           >
             <CinematicHero />
@@ -199,15 +202,15 @@ export default function Home() {
           {/* Hero Content with Sliding Text Animation */}
           <motion.div
             className="absolute z-40 top-[139px] left-1/2 -translate-x-1/2 w-full max-w-[1100px] h-auto px-4"
-            style={{ y: contentParallaxY }}
+            style={{ y: contentParallaxY, opacity: heroContentOpacity }}
           >
             <div className="relative w-full h-auto flex flex-col gap-4">
               {/* First Line - Slide from Left */}
               <div className="h-auto py-1 overflow-hidden">
                 <motion.h1
-                  initial={{ x: "-100%", filter: 'blur(14px)', opacity: 0 }}
-                  animate={{ x: 0, filter: 'blur(0px)', opacity: 1 }}
-                  transition={{ duration: 1.4, ease: [0.16, 1, 0.3, 1], delay: 0.3 }}
+                  initial={{ y: "110%", filter: 'blur(12px)', opacity: 0 }}
+                  animate={{ y: 0, filter: 'blur(0px)', opacity: 1 }}
+                  transition={{ duration: 1.1, ease: [0.16, 1, 0.3, 1], delay: 1.8 }}
                   className="text-center font-bold text-4xl md:text-[3.5rem] leading-tight uppercase text-transparent bg-clip-text whitespace-normal md:whitespace-nowrap"
                   style={{
                     fontFamily: FONTS.heading,
@@ -221,9 +224,9 @@ export default function Home() {
               {/* Second Line - Slide from Right */}
               <div className="h-auto py-1 overflow-hidden">
                 <motion.h1
-                  initial={{ x: "100%", filter: 'blur(14px)', opacity: 0 }}
-                  animate={{ x: 0, filter: 'blur(0px)', opacity: 1 }}
-                  transition={{ duration: 1.4, ease: [0.16, 1, 0.3, 1], delay: 0.7 }}
+                  initial={{ y: "110%", filter: 'blur(12px)', opacity: 0 }}
+                  animate={{ y: 0, filter: 'blur(0px)', opacity: 1 }}
+                  transition={{ duration: 1.1, ease: [0.16, 1, 0.3, 1], delay: 2.1 }}
                   className="text-center font-bold text-4xl md:text-[3.5rem] leading-tight uppercase text-transparent bg-clip-text whitespace-normal md:whitespace-nowrap"
                   style={{
                     fontFamily: FONTS.heading,
@@ -238,7 +241,7 @@ export default function Home() {
               <motion.p
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 1 }}
+                transition={{ duration: 1.0, delay: 2.8 }}
                 className="text-center text-lg sm:text-xl md:text-2xl text-white max-w-4xl mx-auto mt-8"
                 style={{ fontFamily: FONTS.body }}
               >
