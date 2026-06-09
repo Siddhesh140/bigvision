@@ -9,7 +9,7 @@ import Modal from './components/Modal';
 import { CheckIcon, CalendarIcon, UserIcon, MailIcon, PhoneIcon, CompanyIcon, ChatIcon, CalendarGradientIcon } from './components/icons';
 import { ServiceCard, StatCard, FeatureCard, TestimonialCard, InfoCard, CTACard } from './components/cards/cards';
 import GradientText from './components/cards/GradientText';
-import HeroBackground from './components/three/HeroBackground';
+import CinematicHero from './components/hero/CinematicHero';
 import { FONTS, COLORS, EFFECTS } from './constants/styles';
 import { testimonials } from './data/testimonials';
 import { validateEmail, validatePhone, validateName, validateCompany } from './utils/validation';
@@ -187,28 +187,28 @@ export default function Home() {
           style={{ height: '1133px' }}
           aria-label="Hero section"
         >
-          {/* Cinematic WebGL fog background (static poster fallback inside) */}
+          {/* "Sunrise of Authority" cinematic hero background */}
           <motion.div
             className="absolute inset-0 z-10"
             style={{ y: backgroundParallaxY }}
             aria-hidden="true"
           >
-            <HeroBackground />
+            <CinematicHero />
           </motion.div>
 
           {/* Hero Content with Sliding Text Animation */}
           <motion.div
-            className="absolute z-40 top-[139px] left-1/2 -translate-x-1/2 w-full max-w-[880px] h-auto px-4"
+            className="absolute z-40 top-[139px] left-1/2 -translate-x-1/2 w-full max-w-[1100px] h-auto px-4"
             style={{ y: contentParallaxY }}
           >
             <div className="relative w-full h-auto flex flex-col gap-4">
               {/* First Line - Slide from Left */}
-              <div className="h-auto md:h-[3.75rem] overflow-hidden">
+              <div className="h-auto py-1 overflow-hidden">
                 <motion.h1
                   initial={{ x: "-100%", filter: 'blur(14px)', opacity: 0 }}
                   animate={{ x: 0, filter: 'blur(0px)', opacity: 1 }}
                   transition={{ duration: 1.4, ease: [0.16, 1, 0.3, 1], delay: 0.3 }}
-                  className="text-center font-bold text-4xl md:text-[3.75rem] leading-tight uppercase text-transparent bg-clip-text"
+                  className="text-center font-bold text-4xl md:text-[3.5rem] leading-tight uppercase text-transparent bg-clip-text whitespace-normal md:whitespace-nowrap"
                   style={{
                     fontFamily: FONTS.heading,
                     backgroundImage: 'linear-gradient(90deg, #FFFFFF 0%, #EBEBEB 32.21%, #7A7A7A 75%, #525252 99.52%)'
@@ -219,12 +219,12 @@ export default function Home() {
               </div>
 
               {/* Second Line - Slide from Right */}
-              <div className="h-auto md:h-[3.75rem] overflow-hidden">
+              <div className="h-auto py-1 overflow-hidden">
                 <motion.h1
                   initial={{ x: "100%", filter: 'blur(14px)', opacity: 0 }}
                   animate={{ x: 0, filter: 'blur(0px)', opacity: 1 }}
                   transition={{ duration: 1.4, ease: [0.16, 1, 0.3, 1], delay: 0.7 }}
-                  className="text-center font-bold text-4xl md:text-[3.75rem] leading-tight uppercase text-transparent bg-clip-text"
+                  className="text-center font-bold text-4xl md:text-[3.5rem] leading-tight uppercase text-transparent bg-clip-text whitespace-normal md:whitespace-nowrap"
                   style={{
                     fontFamily: FONTS.heading,
                     backgroundImage: 'linear-gradient(90deg, #FFFFFF 0%, #EBEBEB 32.21%, #7A7A7A 75%, #525252 99.52%)'
