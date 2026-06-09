@@ -2,7 +2,6 @@
 
 import Image from 'next/image';
 import { useState, useEffect } from 'react';
-import { FONTS } from '../constants/styles';
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -46,25 +45,15 @@ const Navbar = () => {
     <>
       <nav className="w-full py-4 px-4 sm:px-8 lg:px-16 flex items-center justify-between bg-black relative z-[100]" role="navigation" aria-label="Main navigation">
 
-        {/* Logo and Company Name */}
-        <div className="flex items-center gap-3 cursor-pointer">
-          <div className="flex-shrink-0">
-            <Image
-              src="/Vector.svg"
-              alt="BigVision Logo"
-              width={51}
-              height={28}
-            />
-          </div>
-          <span
-            className="text-white text-2xl font-bold"
-            style={{
-              fontFamily: FONTS.heading,
-              textShadow: '0 0 15px rgba(59, 130, 246, 0.8)'
-            }}
-          >
-            Big Vision
-          </span>
+        {/* Logo (icon only, per brand design) */}
+        <div className="flex items-center cursor-pointer" aria-label="BigVision">
+          <Image
+            src="/Vector.svg"
+            alt="BigVision Logo"
+            width={58}
+            height={32}
+            style={{ filter: 'drop-shadow(0 0 14px rgba(49,162,243,0.6))' }}
+          />
         </div>
 
         {/* Desktop Navigation Links */}

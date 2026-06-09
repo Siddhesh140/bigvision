@@ -9,7 +9,7 @@ import Modal from './components/Modal';
 import { CheckIcon, CalendarIcon, UserIcon, MailIcon, PhoneIcon, CompanyIcon, ChatIcon, CalendarGradientIcon } from './components/icons';
 import { ServiceCard, StatCard, FeatureCard, TestimonialCard, InfoCard, CTACard } from './components/cards/cards';
 import GradientText from './components/cards/GradientText';
-import CinematicHero from './components/hero/CinematicHero';
+import HeroExperience from './components/hero/HeroExperience';
 import { FONTS, COLORS, EFFECTS } from './constants/styles';
 import { testimonials } from './data/testimonials';
 import { validateEmail, validatePhone, validateName, validateCompany } from './utils/validation';
@@ -23,7 +23,6 @@ export default function Home() {
 
   // Refs for animations
   const servicesTitleRef = useRef(null);
-  const heroRef = useRef(null);
 
   // Scroll animations
   const { scrollYProgress } = useScroll({
@@ -31,16 +30,6 @@ export default function Home() {
     offset: ["start end", "end start"]
   });
   const underlineScaleX = useTransform(scrollYProgress, [0, 0.5, 1], [0, 1, 0]);
-
-  const { scrollYProgress: heroScrollYProgress } = useScroll({
-    target: heroRef,
-    offset: ["start start", "end start"]
-  });
-  const backgroundParallaxY = useTransform(heroScrollYProgress, [0, 1], [0, 200]);
-  const contentParallaxY = useTransform(heroScrollYProgress, [0, 1], [0, -300]);
-  // Scroll-exit: the scene dims and the words lift away as the hero departs
-  const heroBgOpacity = useTransform(heroScrollYProgress, [0, 0.9], [1, 0.4]);
-  const heroContentOpacity = useTransform(heroScrollYProgress, [0, 0.55], [1, 0]);
 
   // Form submission handler
   const handleFormSubmit = async (formData) => {
@@ -184,72 +173,7 @@ export default function Home() {
         style={{ backgroundColor: COLORS.background.primary }}
       >
         {/* Hero Section */}
-        <section
-          ref={heroRef}
-          className="relative overflow-hidden w-full"
-          style={{ height: '1133px' }}
-          aria-label="Hero section"
-        >
-          {/* "Sunrise of Authority" cinematic hero background */}
-          <motion.div
-            className="absolute inset-0 z-10"
-            style={{ y: backgroundParallaxY, opacity: heroBgOpacity }}
-            aria-hidden="true"
-          >
-            <CinematicHero />
-          </motion.div>
-
-          {/* Hero Content with Sliding Text Animation */}
-          <motion.div
-            className="absolute z-40 top-[139px] left-1/2 -translate-x-1/2 w-full max-w-[1100px] h-auto px-4"
-            style={{ y: contentParallaxY, opacity: heroContentOpacity }}
-          >
-            <div className="relative w-full h-auto flex flex-col gap-4">
-              {/* First Line - Slide from Left */}
-              <div className="h-auto py-1 overflow-hidden">
-                <motion.h1
-                  initial={{ y: "110%", filter: 'blur(12px)', opacity: 0 }}
-                  animate={{ y: 0, filter: 'blur(0px)', opacity: 1 }}
-                  transition={{ duration: 1.1, ease: [0.16, 1, 0.3, 1], delay: 1.8 }}
-                  className="text-center font-bold text-4xl md:text-[3.5rem] leading-tight uppercase text-transparent bg-clip-text whitespace-normal md:whitespace-nowrap"
-                  style={{
-                    fontFamily: FONTS.heading,
-                    backgroundImage: 'linear-gradient(90deg, #FFFFFF 0%, #EBEBEB 32.21%, #7A7A7A 75%, #525252 99.52%)'
-                  }}
-                >
-                  Where B2B Brands
-                </motion.h1>
-              </div>
-
-              {/* Second Line - Slide from Right */}
-              <div className="h-auto py-1 overflow-hidden">
-                <motion.h1
-                  initial={{ y: "110%", filter: 'blur(12px)', opacity: 0 }}
-                  animate={{ y: 0, filter: 'blur(0px)', opacity: 1 }}
-                  transition={{ duration: 1.1, ease: [0.16, 1, 0.3, 1], delay: 2.1 }}
-                  className="text-center font-bold text-4xl md:text-[3.5rem] leading-tight uppercase text-transparent bg-clip-text whitespace-normal md:whitespace-nowrap"
-                  style={{
-                    fontFamily: FONTS.heading,
-                    backgroundImage: 'linear-gradient(90deg, #FFFFFF 0%, #EBEBEB 32.21%, #7A7A7A 75%, #525252 99.52%)'
-                  }}
-                >
-                  Become Industry Authorities
-                </motion.h1>
-              </div>
-
-              {/* Subtitle with Fade In */}
-              <motion.p
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 1.0, delay: 2.8 }}
-                className="text-center text-lg sm:text-xl md:text-2xl text-white max-w-4xl mx-auto mt-8"
-                style={{ fontFamily: FONTS.body }}
-              >
-                We help manufacturing leaders generate real business through strategic LinkedIn marketing
-              </motion.p>
-            </div>
-          </motion.div>
-        </section>
+        <HeroExperience />
 
         {/* Services Section */}
         <section
