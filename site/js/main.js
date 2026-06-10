@@ -30,13 +30,21 @@
   /* ---------- text splitting ---------- */
 
   function splitChars(el) {
-    const text = el.textContent;
+    // char spans grouped inside nowrap word spans so words never break mid-letter
+    const words = el.textContent.trim().split(/\s+/);
     el.textContent = '';
-    [...text].forEach((ch) => {
-      const s = document.createElement('span');
-      s.className = 'c';
-      s.innerHTML = ch === ' ' ? '&nbsp;' : ch;
-      el.appendChild(s);
+    words.forEach((w, i) => {
+      const wordSpan = document.createElement('span');
+      wordSpan.style.display = 'inline-block';
+      wordSpan.style.whiteSpace = 'nowrap';
+      [...w].forEach((ch) => {
+        const s = document.createElement('span');
+        s.className = 'c';
+        s.textContent = ch;
+        wordSpan.appendChild(s);
+      });
+      el.appendChild(wordSpan);
+      if (i < words.length - 1) el.appendChild(document.createTextNode(' '));
     });
     return el.querySelectorAll('.c');
   }
@@ -165,10 +173,15 @@
       },
     });
 
+    // darken the whiteout while inside the cloud layer, then clear fully
+    diveTl
+      .fromTo('.dive-veil', { opacity: 0 }, { opacity: 0.9, duration: 1.4, ease: 'power1.in' }, 0)
+      .to('.dive-veil', { opacity: 0, duration: 1.4, ease: 'power1.out' }, 4.4);
+
     diveLines.forEach((line, i) => {
       diveTl
         .fromTo(line, { opacity: 0, scale: 0.94, filter: 'blur(6px)' },
-          { opacity: 1, scale: 1, filter: 'blur(0px)', duration: 1, ease: 'power2.out' })
+          { opacity: 1, scale: 1, filter: 'blur(0px)', duration: 1, ease: 'power2.out' }, i === 0 ? 0.6 : '>')
         .to(line, { opacity: 0, scale: 1.05, filter: 'blur(6px)', duration: 1, ease: 'power2.in' }, '+=0.45');
     });
   } else {
@@ -181,40 +194,46 @@
   const track = document.querySelector('.marquee-track');
   track.innerHTML += track.innerHTML;
 
-  /* ---------- SERVICES: horizontal scroll (desktop only) ---------- */
+  /* ---------- SERVICES: index rows + cursor-following preview ---------- */
 
-  const mm = gsap.matchMedia();
+  const floatBox = document.querySelector('.service-float');
+  const floatImg = floatBox ? floatBox.querySelector('img') : null;
 
-  mm.add('(min-width: 768px)', () => {
-    if (reduceMotion) return;
-    const sTrack = document.querySelector('.services-track');
-    const getDistance = () => sTrack.scrollWidth - window.innerWidth;
+  if (floatBox && !isTouch) {
+    const fpos = { x: 0, y: 0, tx: 0, ty: 0 };
+    let floatActive = false;
 
-    const horizontal = gsap.to(sTrack, {
-      x: () => -getDistance(),
-      ease: 'none',
-      scrollTrigger: {
-        trigger: '#services',
-        start: 'top top',
-        end: () => '+=' + getDistance(),
-        scrub: 0.6,
-        pin: true,
-        anticipatePin: 1,
-        invalidateOnRefresh: true,
-      },
+    window.addEventListener('mousemove', (e) => {
+      fpos.tx = e.clientX + 28;
+      fpos.ty = e.clientY - 100;
+    }, { passive: true });
+
+    gsap.ticker.add(() => {
+      if (!floatActive && Math.abs(fpos.x - fpos.tx) < 0.5) return;
+      fpos.x += (fpos.tx - fpos.x) * 0.12;
+      fpos.y += (fpos.ty - fpos.y) * 0.12;
+      floatBox.style.transform = `translate(${fpos.x}px, ${fpos.y}px) scale(${floatActive ? 1 : 0.92})`;
     });
 
-    // panels scale in slightly as they enter the viewport horizontally
-    gsap.utils.toArray('.service-panel').forEach((panel) => {
-      gsap.from(panel, {
-        scale: 0.94, opacity: 0.5, duration: 0.8,
-        scrollTrigger: {
-          trigger: panel,
-          containerAnimation: horizontal,
-          start: 'left 92%',
-          once: true,
-        },
+    document.querySelectorAll('.service-row').forEach((row) => {
+      row.addEventListener('mouseenter', () => {
+        floatImg.src = row.dataset.img;
+        if (!floatActive) { fpos.x = fpos.tx; fpos.y = fpos.ty; } // snap on first hover
+        floatBox.classList.add('is-active');
+        floatActive = true;
       });
+      row.addEventListener('mouseleave', () => {
+        floatBox.classList.remove('is-active');
+        floatActive = false;
+      });
+    });
+  }
+
+  // rows slide in with a stagger
+  gsap.utils.toArray('.service-row').forEach((row, i) => {
+    gsap.from(row, {
+      y: 40, opacity: 0, duration: 0.9, ease: 'power3.out', delay: i * 0.08,
+      scrollTrigger: { trigger: row, start: 'top 90%', once: true },
     });
   });
 
@@ -227,7 +246,7 @@
     });
   });
 
-  gsap.utils.toArray('.kicker, .stat, .split-card, .voice-card, .proof-banner, .cta-sub, .lead-form, .cta-whatsapp').forEach((el) => {
+  gsap.utils.toArray('.kicker, .stat, .fit-col, .voice, .proof-banner, .end-statement, .cta-sub, .lead-form, .cta-whatsapp').forEach((el) => {
     gsap.from(el, {
       y: 44, opacity: 0, duration: 1, ease: 'power3.out',
       scrollTrigger: { trigger: el, start: 'top 88%', once: true },

@@ -7,14 +7,12 @@
   <meta name="description" content="Premium B2B LinkedIn marketing for manufacturers. Personal branding, content creation and lead generation that turns industrial expertise into pipeline. 4000+ leads generated." />
   <link rel="icon" href="assets/Vector.svg" type="image/svg+xml" />
 
-  <!-- Fonts: same families as brand (Integral CF first if installed, Montserrat fallback) -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Roboto+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet" />
 
-  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/style.css?v=20260610d" />
 
-  <!-- Three.js via import map -->
   <script type="importmap">
   {
     "imports": {
@@ -47,7 +45,6 @@
   <div class="grain" aria-hidden="true"></div>
   <div class="cursor" aria-hidden="true"><div class="cursor-dot"></div><div class="cursor-ring"></div></div>
 
-  <!-- Scroll progress rail -->
   <div class="rail" aria-hidden="true">
     <div class="rail-line"><div class="rail-fill" id="rail-fill"></div></div>
   </div>
@@ -55,7 +52,7 @@
   <!-- ============ NAV ============ -->
   <header id="nav">
     <a class="nav-brand" href="#top" data-scrollto="#top" data-magnetic>
-      <img src="assets/Vector.svg" alt="Big Vision logo" width="40" height="22" />
+      <img src="assets/Vector.svg" alt="Big Vision logo" width="38" height="21" />
       <span>Big&nbsp;Vision</span>
     </a>
     <nav class="nav-links" aria-label="Main navigation">
@@ -70,7 +67,6 @@
     </button>
   </header>
 
-  <!-- Mobile menu -->
   <div id="mobile-menu" aria-hidden="true">
     <a href="#services" data-scrollto="#services">Services</a>
     <a href="#proof" data-scrollto="#proof">Results</a>
@@ -82,7 +78,8 @@
   <main id="top">
 
     <!-- ============ ACT 1 · HERO ============ -->
-    <section id="hero" class="act-transparent">
+    <section id="hero" class="act-transparent has-scene-frame">
+      <div class="scene-frame" aria-hidden="true"></div>
       <div class="hero-content">
         <p class="hero-eyebrow reveal-fade"><span class="pulse-dot"></span>B2B LinkedIn Marketing for Manufacturers</p>
         <h1 class="hero-title">
@@ -104,6 +101,7 @@
 
     <!-- ============ ACT 2 · THE DIVE ============ -->
     <section id="dive" class="act-transparent">
+      <div class="dive-veil" aria-hidden="true"></div>
       <div class="dive-stage">
         <p class="dive-line" data-dive="0">Your factory makes <em>world-class</em> products.</p>
         <p class="dive-line" data-dive="1">But online&nbsp;— <em>you're invisible.</em></p>
@@ -114,7 +112,6 @@
     <!-- ============ MARQUEE ============ -->
     <div class="marquee" aria-hidden="true">
       <div class="marquee-track">
-        <!-- duplicated by JS -->
         <span>Automotive</span><i></i><span>Aerospace</span><i></i><span>Tooling</span><i></i>
         <span>Robotics</span><i></i><span>X-Ray Systems</span><i></i><span>Industrial SaaS</span><i></i>
         <span>CNC Machining</span><i></i><span>Heavy Engineering</span><i></i><span>MSME · SME</span><i></i>
@@ -122,54 +119,59 @@
       </div>
     </div>
 
-    <!-- ============ ACT 3 · SERVICES (horizontal) ============ -->
+    <!-- ============ ACT 3 · SERVICES — index list ============ -->
     <section id="services" class="act-solid">
-      <div class="services-intro">
+      <div class="act-head">
         <p class="kicker">01 — What we do</p>
         <h2 class="h2 split-words">Built to make you unmissable</h2>
       </div>
-      <div class="services-viewport">
-        <div class="services-track">
-          <article class="service-panel">
-            <div class="service-num">01</div>
-            <div class="service-media"><img src="assets/image 14 (1).png" alt="Personal branding illustration" /></div>
-            <div class="service-body">
-              <h3>Personal Branding</h3>
-              <p class="service-tag">We don't just connect — we convert.</p>
-              <p>Your LinkedIn profile is your digital handshake. We transform it into a lead-generating asset that positions you as the go-to expert in your industry.</p>
-            </div>
-          </article>
-          <article class="service-panel">
-            <div class="service-num">02</div>
-            <div class="service-media"><img src="assets/image 14 (2).png" alt="Content creation illustration" /></div>
-            <div class="service-body">
-              <h3>Content Creation</h3>
-              <p class="service-tag">Content that speaks manufacturing.</p>
-              <p>From reels to carousels, we create scroll-stopping content that resonates with decision-makers. Every post is designed to educate, engage and convert.</p>
-            </div>
-          </article>
-          <article class="service-panel">
-            <div class="service-num">03</div>
-            <div class="service-media"><img src="assets/image 14.png" alt="Lead generation illustration" /></div>
-            <div class="service-body">
-              <h3>Lead Generation</h3>
-              <p class="service-tag">Qualified leads, not just likes.</p>
-              <p>Content that speaks your customers' language — thought-leadership tailored to your brand and buyer, engineered for conversions.</p>
-            </div>
-          </article>
-          <article class="service-panel service-panel-end">
-            <p class="end-line">One partner.<br/>One plan.<br/><em>All execution.</em></p>
-            <a class="btn btn-primary" href="#contact" data-scrollto="#contact" data-magnetic>Start With a Call</a>
-          </article>
-        </div>
+
+      <div class="service-index">
+        <article class="service-row" data-img="assets/image 14 (1).png">
+          <span class="row-num">01</span>
+          <h3 class="row-title">Personal Branding</h3>
+          <div class="row-body">
+            <p class="row-tag">We don't just connect — we convert.</p>
+            <p class="row-desc">Your LinkedIn profile is your digital handshake. We transform it into a lead-generating asset that positions you as the go-to expert in your industry.</p>
+          </div>
+          <span class="row-arrow" aria-hidden="true">→</span>
+        </article>
+
+        <article class="service-row" data-img="assets/image 14 (2).png">
+          <span class="row-num">02</span>
+          <h3 class="row-title">Content Creation</h3>
+          <div class="row-body">
+            <p class="row-tag">Content that speaks manufacturing.</p>
+            <p class="row-desc">From reels to carousels, we create scroll-stopping content that resonates with decision-makers. Every post educates, engages and converts.</p>
+          </div>
+          <span class="row-arrow" aria-hidden="true">→</span>
+        </article>
+
+        <article class="service-row" data-img="assets/image 14.png">
+          <span class="row-num">03</span>
+          <h3 class="row-title">Lead Generation</h3>
+          <div class="row-body">
+            <p class="row-tag">Qualified leads, not just likes.</p>
+            <p class="row-desc">Content that speaks your customers' language — thought-leadership tailored to your brand and buyer, engineered for conversions.</p>
+          </div>
+          <span class="row-arrow" aria-hidden="true">→</span>
+        </article>
       </div>
+
+      <!-- floating preview that follows the cursor over the rows -->
+      <div class="service-float" aria-hidden="true"><img src="assets/image 14 (1).png" alt="" /></div>
+
+      <p class="end-statement">One partner. One plan. <em>All execution.</em></p>
     </section>
 
-    <!-- ============ ACT 4 · PROOF ============ -->
+    <!-- ============ ACT 4 · PROOF — bare numerals ============ -->
     <section id="proof" class="act-solid">
-      <p class="kicker">02 — The numbers</p>
-      <h2 class="h2 split-words">Proof, not promises</h2>
-      <div class="stats">
+      <div class="act-head">
+        <p class="kicker">02 — The numbers</p>
+        <h2 class="h2 split-words">Proof, not promises</h2>
+      </div>
+
+      <div class="stat-row">
         <div class="stat">
           <div class="stat-value"><span class="count" data-count="4000">0</span><span class="stat-suffix">+</span></div>
           <p>B2B leads generated</p>
@@ -183,21 +185,25 @@
           <p>Conversion rate</p>
         </div>
       </div>
+
       <div class="proof-banner">
         <img src="assets/image15.png" alt="Team collaborating on strategy" />
         <div class="proof-banner-text">
           <h3>We make social media work like sales.</h3>
-          <p>Strategic. Targeted. Results-driven.</p>
+          <p>Strategic · Targeted · Results-driven</p>
         </div>
       </div>
     </section>
 
-    <!-- ============ ACT 5 · WHO / DIFFERENT ============ -->
+    <!-- ============ ACT 5 · FIT — editorial columns ============ -->
     <section id="different" class="act-solid">
-      <p class="kicker">03 — The fit</p>
-      <h2 class="h2 split-words">Manufacturing is our language</h2>
-      <div class="split">
-        <div class="split-card">
+      <div class="act-head">
+        <p class="kicker">03 — The fit</p>
+        <h2 class="h2 split-words">Manufacturing is our language</h2>
+      </div>
+
+      <div class="fit-grid">
+        <div class="fit-col">
           <h3>Who we work with</h3>
           <ul>
             <li>Manufacturing — automotive, aerospace, tooling, X-ray, robotics</li>
@@ -206,7 +212,7 @@
             <li>Founders &amp; MDs building a serious LinkedIn presence</li>
           </ul>
         </div>
-        <div class="split-card highlight">
+        <div class="fit-col fit-col-accent">
           <h3>What makes us different</h3>
           <ul>
             <li>We understand how industrial buying works</li>
@@ -218,27 +224,30 @@
       </div>
     </section>
 
-    <!-- ============ ACT 6 · TESTIMONIALS ============ -->
+    <!-- ============ ACT 6 · VOICES — typographic quotes ============ -->
     <section id="voices" class="act-solid">
-      <p class="kicker">04 — Client wins</p>
-      <h2 class="h2 split-words">Real results, real leaders</h2>
-      <div class="voices-grid">
-        <figure class="voice-card tilt">
-          <blockquote>“Fresh content, every week — without lifting a finger. I finally stopped worrying about what to post.”</blockquote>
+      <div class="act-head">
+        <p class="kicker">04 — Client wins</p>
+        <h2 class="h2 split-words">Real results, real leaders</h2>
+      </div>
+
+      <div class="voices-row">
+        <figure class="voice">
+          <blockquote>Fresh content, every week — without lifting a finger. I finally stopped worrying about what to post.</blockquote>
           <figcaption>
             <img src="assets/karthikeyan jawahar.jpeg" alt="Karthikeyan Jawahar" />
             <div><strong>Karthikeyan Jawahar</strong><span>Director, Karma Innovations</span></div>
           </figcaption>
         </figure>
-        <figure class="voice-card tilt">
-          <blockquote>“They turn raw ideas into strong content that brings real leads. That's the difference.”</blockquote>
+        <figure class="voice">
+          <blockquote>They turn raw ideas into strong content that brings real leads. That's the difference.</blockquote>
           <figcaption>
             <img src="assets/anand mulay.jpeg" alt="Anand Mulay" />
             <div><strong>Anand Mulay</strong><span>MD, Renuka Tools</span></div>
           </figcaption>
         </figure>
-        <figure class="voice-card tilt">
-          <blockquote>“Earlier, I avoided social media. Now it works quietly in the background — just like a good machine should.”</blockquote>
+        <figure class="voice">
+          <blockquote>Earlier, I avoided social media. Now it works quietly in the background — just like a good machine should.</blockquote>
           <figcaption>
             <img src="assets/dinesh alone.jpeg" alt="Dinesh Alone" />
             <div><strong>Dinesh Alone</strong><span>Director, Vibex Machines</span></div>
@@ -247,8 +256,9 @@
       </div>
     </section>
 
-    <!-- ============ ACT 7 · CTA (back above the clouds) ============ -->
-    <section id="contact" class="act-transparent">
+    <!-- ============ ACT 7 · CTA ============ -->
+    <section id="contact" class="act-transparent has-scene-frame">
+      <div class="scene-frame" aria-hidden="true"></div>
       <div class="cta-inner">
         <p class="kicker">05 — Next step</p>
         <h2 class="cta-title">
@@ -276,18 +286,30 @@
 
   </main>
 
-  <!-- ============ FOOTER ============ -->
+  <!-- ============ FOOTER — giant wordmark ============ -->
   <footer>
-    <div class="footer-brand">
-      <img src="assets/Vector.svg" alt="Big Vision logo" width="44" height="24" />
-      <span>Big&nbsp;Vision</span>
+    <div class="footer-top">
+      <div class="footer-col footer-brand-col">
+        <div class="footer-brand">
+          <img src="assets/Vector.svg" alt="Big Vision logo" width="40" height="22" />
+          <span>Big&nbsp;Vision</span>
+        </div>
+        <p class="footer-tag">Where B2B brands become industry authorities.</p>
+      </div>
+      <div class="footer-col">
+        <p class="footer-label">Navigate</p>
+        <a href="#services" data-scrollto="#services">Services</a>
+        <a href="#proof" data-scrollto="#proof">Results</a>
+        <a href="#voices" data-scrollto="#voices">Clients</a>
+      </div>
+      <div class="footer-col">
+        <p class="footer-label">Contact</p>
+        <a href="https://www.linkedin.com/company/bigvision" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        <a href="https://wa.me/919579662005" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+        <a href="tel:+919579662005">+91 95796 62005</a>
+      </div>
     </div>
-    <p class="footer-tag">Where B2B brands become industry authorities.</p>
-    <div class="footer-links">
-      <a href="https://www.linkedin.com/company/bigvision" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-      <a href="https://wa.me/919579662005" target="_blank" rel="noopener noreferrer">WhatsApp</a>
-      <a href="tel:+919579662005">+91 95796 62005</a>
-    </div>
+    <p class="footer-mark" aria-hidden="true">BIG&nbsp;VISION</p>
     <p class="footer-copy">© <span id="year"></span> Big Vision. All rights reserved.</p>
   </footer>
 
@@ -296,7 +318,7 @@
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.min.js"></script>
 
-  <script type="module" src="js/scene.js"></script>
-  <script src="js/main.js" defer></script>
+  <script type="module" src="js/scene.js?v=20260610d"></script>
+  <script src="js/main.js?v=20260610d" defer></script>
 </body>
 </html>
