@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Big Vision — We Engineer Attention</title>
+  <meta name="description" content="Big Vision turns manufacturing excellence into LinkedIn authority — personal brands, content systems and lead pipelines, machined to spec. 4000+ B2B leads built." />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 52 29'%3E%3Cpath d='M38.4877 0.500349L25.5117 9.79621L12.5339 0.500695C8.35591 0.462985 0 3.4647 0 15.7732C12.5339 8.5368 25.5108 21.8932 25.5108 28.5C25.5108 21.8932 38.4877 8.53646 51.0216 15.7729C51.0216 3.46435 42.6657 0.462639 38.4877 0.500349Z' fill='%2331a2f3'/%3E%3C/svg%3E" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="css/style.css?v=7" />
+
+  <script type="importmap">
+  { "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+  } }
+  </script>
+</head>
+<body>
+
+  <!-- ====== PRELOADER (boot log) ====== -->
+  <div id="preloader" aria-hidden="true">
+    <div class="boot">
+      <p class="boot-line">BV-OS v3.0 — BIG VISION BUILD SYSTEM</p>
+      <p class="boot-line">LOADING PART: WING-01 …… OK</p>
+      <p class="boot-line">CALIBRATING GRID 64/8 …… OK</p>
+      <p class="boot-line">STATUS: <span class="ok">READY</span></p>
+      <div class="boot-bar"><div class="boot-fill" id="boot-fill"></div></div>
+    </div>
+  </div>
+
+  <!-- ====== FIXED LAYERS ====== -->
+  <canvas id="webgl"></canvas>
+  <div class="xhair" aria-hidden="true"><span class="xh-h"></span><span class="xh-v"></span><span class="xh-dot"></span></div>
+
+  <!-- top bar -->
+  <header id="bar">
+    <a class="bar-brand" href="#top" data-scrollto="#top">
+      <svg viewBox="0 0 52 29" width="34" height="19" aria-hidden="true"><path d="M38.4877 0.500349L25.5117 9.79621L12.5339 0.500695C8.35591 0.462985 0 3.4647 0 15.7732C12.5339 8.5368 25.5108 21.8932 25.5108 28.5C25.5108 21.8932 38.4877 8.53646 51.0216 15.7729C51.0216 3.46435 42.6657 0.462639 38.4877 0.500349Z" fill="url(#bg1)"/><defs><linearGradient id="bg1" x1="26" y1="0" x2="26" y2="29"><stop stop-color="#31A2F3"/><stop offset="1" stop-color="#2213C4"/></linearGradient></defs></svg>
+      <span>BIG VISION</span>
+    </a>
+    <nav class="bar-nav" aria-label="Main">
+      <a href="#process" data-scrollto="#process">PROCESS</a>
+      <a href="#output" data-scrollto="#output">OUTPUT</a>
+      <a href="#reports" data-scrollto="#reports">REPORTS</a>
+      <a href="#commission" data-scrollto="#commission">COMMISSION</a>
+    </nav>
+    <a class="rbtn rbtn-fill bar-cta" href="#commission" data-scrollto="#commission" data-magnetic>START A BUILD</a>
+    <button class="bar-burger" id="burger" aria-label="Open menu" aria-expanded="false"><span></span><span></span></button>
+  </header>
+
+  <!-- mobile menu -->
+  <div id="menu" aria-hidden="true">
+    <a href="#process" data-scrollto="#process">PROCESS</a>
+    <a href="#output" data-scrollto="#output">OUTPUT</a>
+    <a href="#reports" data-scrollto="#reports">REPORTS</a>
+    <a href="#commission" data-scrollto="#commission">COMMISSION</a>
+    <a class="rbtn rbtn-fill" href="#commission" data-scrollto="#commission">START A BUILD</a>
+  </div>
+
+  <!-- bottom telemetry -->
+  <div id="telemetry" aria-hidden="true">
+    <span>QC <b id="tm-build">000%</b></span>
+    <span>ROT <b id="tm-rot">000.0°</b></span>
+    <span>GRID 64/8</span>
+    <span>PART WING-01</span>
+    <span>STATUS <b class="ok">NOMINAL</b></span>
+  </div>
+
+  <main id="top">
+
+    <!-- ====== A0 · HERO ====== -->
+    <section id="hero">
+      <div class="hero-grid">
+        <div class="hero-copy">
+          <p class="mlabel reveal-h">BV/INDEX 001 — B2B GROWTH SYSTEMS FOR MANUFACTURERS</p>
+          <h1 class="display">
+            <span class="dline"><span class="dmask">WE ENGINEER</span></span>
+            <span class="dline"><span class="dmask">ATTENTION<em>.</em></span></span>
+          </h1>
+          <p class="hero-body reveal-h">Big Vision turns manufacturing excellence into LinkedIn authority — personal brands, content systems and lead pipelines, machined to spec.</p>
+          <div class="hero-cta reveal-h">
+            <a class="rbtn rbtn-fill" href="#commission" data-scrollto="#commission" data-magnetic>START A BUILD</a>
+            <a class="rbtn rbtn-line" href="#process" data-scrollto="#process" data-magnetic>VIEW THE PROCESS</a>
+          </div>
+          <div class="scroll-cue" aria-hidden="true">
+            <span>SCROLL TO BUILD</span>
+            <i class="cue-rule"></i>
+          </div>
+        </div>
+
+        <!-- annotations over the 3D part -->
+        <div class="hero-anno" aria-hidden="true">
+          <div class="anno-dim">
+            <span class="anno-tick"></span>
+            <span class="anno-text">Ø ATTENTION</span>
+            <span class="anno-tick"></span>
+          </div>
+          <div class="anno-card">
+            <p>PART&nbsp;&nbsp;&nbsp;: WING-01</p>
+            <p>MAT&nbsp;&nbsp;&nbsp;&nbsp;: REPUTATION-GRADE STEEL</p>
+            <p>FINISH : UNMISSABLE</p>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ====== A1 · THE BUILD (pinned) ====== -->
+    <section id="spec">
+      <div class="spec-stage">
+        <div class="spec-line" data-spec="0">
+          <p class="mlabel">SPEC 01/03 — CONDITION: <b class="ok">VERIFIED</b></p>
+          <h2>World-class on the factory&nbsp;floor.</h2>
+        </div>
+        <div class="spec-line" data-spec="1">
+          <p class="mlabel">SPEC 02/03 — VISIBILITY: <b class="fail">004% — FAIL</b></p>
+          <h2>Invisible on the&nbsp;feed.</h2>
+        </div>
+        <div class="spec-line" data-spec="2">
+          <p class="mlabel">SPEC 03/03 — CORRECTIVE ACTION: <b class="sig">ENGAGED</b></p>
+          <h2>We close that&nbsp;gap.</h2>
+        </div>
+        <div class="spec-stamp" id="stamp">[ INSPECTION PASSED ]</div>
+      </div>
+    </section>
+
+    <!-- ====== ticker ====== -->
+    <div class="ticker" aria-hidden="true">
+      <div class="ticker-track">
+        <span>BV-001 PERSONAL BRANDING</span><i>▸</i><span>BV-002 CONTENT SYSTEMS</span><i>▸</i>
+        <span>BV-003 LEAD PIPELINE</span><i>▸</i><span>AUTOMOTIVE</span><i>▸</i><span>AEROSPACE</span><i>▸</i>
+        <span>TOOLING</span><i>▸</i><span>ROBOTICS</span><i>▸</i><span>X-RAY SYSTEMS</span><i>▸</i>
+        <span>CNC</span><i>▸</i><span>INDUSTRIAL SAAS</span><i>▸</i>
+      </div>
+    </div>
+
+    <!-- ====== A2 · PROCESS ====== -->
+    <section id="process" class="solid">
+      <div class="wrap">
+        <p class="mlabel kick">SECTION A2 — THE LINE</p>
+        <h2 class="h2">THREE STATIONS. ONE MACHINE.</h2>
+      </div>
+
+      <article class="station wrap">
+        <span class="station-num" aria-hidden="true">01</span>
+        <div class="station-copy">
+          <h3>Brand Engineering</h3>
+          <p>Your profile rebuilt as a lead-generating asset. Positioning, narrative, proof — torqued to spec.</p>
+          <ul>
+            <li>Profile architecture</li>
+            <li>Founder positioning</li>
+            <li>Authority signals</li>
+          </ul>
+        </div>
+        <div class="station-visual">
+          <div class="mock mock-profile" aria-hidden="true">
+            <div class="mock-chrome"><i></i><i></i><i></i><span>linkedin.com/in/founder</span></div>
+            <div class="mp-banner"></div>
+            <div class="mp-head">
+              <div class="mp-avatar"><svg viewBox="0 0 52 29" width="22"><path d="M38.4877 0.500349L25.5117 9.79621L12.5339 0.500695C8.35591 0.462985 0 3.4647 0 15.7732C12.5339 8.5368 25.5108 21.8932 25.5108 28.5C25.5108 21.8932 38.4877 8.53646 51.0216 15.7729C51.0216 3.46435 42.6657 0.462639 38.4877 0.500349Z" fill="#31a2f3"/></svg></div>
+              <div class="mp-id">
+                <p class="mp-name">FOUNDER &amp; MD</p>
+                <p class="mp-headline">"I build X-ray systems that ship to 14 countries."</p>
+                <p class="mp-meta">MANUFACTURING · <b class="mp-followers">0</b> FOLLOWERS</p>
+              </div>
+              <span class="mp-badge">AUTHORITY ✓</span>
+            </div>
+            <div class="mp-bars">
+              <div class="mp-bar"><span>POSITIONING</span><i></i></div>
+              <div class="mp-bar"><span>NARRATIVE</span><i></i></div>
+              <div class="mp-bar"><span>PROOF</span><i></i></div>
+            </div>
+            <p class="media-tag">ST.01 — PROFILE REBUILT AS AN ASSET</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="station wrap station-flip">
+        <span class="station-num" aria-hidden="true">02</span>
+        <div class="station-copy">
+          <h3>Content Machining</h3>
+          <p>Scroll-stopping content milled weekly from your real work — reels, carousels, war stories from the floor.</p>
+          <ul>
+            <li>Weekly cadence</li>
+            <li>Decision-maker targeting</li>
+            <li>Zero generic posts</li>
+          </ul>
+        </div>
+        <div class="station-visual">
+          <div class="mock mock-feed" aria-hidden="true">
+            <div class="mock-chrome"><i></i><i></i><i></i><span>feed — week 14 of 52</span></div>
+            <div class="mf-stack">
+              <article class="mf-post">
+                <header><i class="mf-dot"></i><span>FOUNDER &amp; MD</span><b class="mf-type">REEL</b></header>
+                <p>Why our tolerance limit is 0.002&nbsp;mm — and your supplier's isn't.</p>
+                <footer><span class="mf-like">▲ <b>0</b></span><span class="mf-cmt">✉ <b>0</b></span><span class="mf-week">WK 12</span></footer>
+              </article>
+              <article class="mf-post">
+                <header><i class="mf-dot"></i><span>FOUNDER &amp; MD</span><b class="mf-type">CAROUSEL</b></header>
+                <p>5 things buyers check before they trust an Indian fab shop.</p>
+                <footer><span class="mf-like">▲ <b>0</b></span><span class="mf-cmt">✉ <b>0</b></span><span class="mf-week">WK 13</span></footer>
+              </article>
+              <article class="mf-post">
+                <header><i class="mf-dot"></i><span>FOUNDER &amp; MD</span><b class="mf-type">CASE STUDY</b></header>
+                <p>How one machine photo got us a 7-figure aerospace enquiry.</p>
+                <footer><span class="mf-like">▲ <b>0</b></span><span class="mf-cmt">✉ <b>0</b></span><span class="mf-week">WK 14</span></footer>
+              </article>
+            </div>
+            <p class="media-tag">ST.02 — WEEKLY OUTPUT · ZERO GENERIC</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="station wrap">
+        <span class="station-num" aria-hidden="true">03</span>
+        <div class="station-copy">
+          <h3>Lead Assembly</h3>
+          <p>Conversations qualified and routed to your inbox. Likes are scrap; orders are output.</p>
+          <ul>
+            <li>ICP filtering</li>
+            <li>DM systems</li>
+            <li>Pipeline handoff</li>
+          </ul>
+        </div>
+        <div class="station-visual">
+          <div class="mock mock-inbox" aria-hidden="true">
+            <div class="mock-chrome"><i></i><i></i><i></i><span>inbox — qualified only</span></div>
+            <div class="mi-thread">
+              <p class="mi-msg mi-in">Saw your post on CNC tolerances. Impressive setup.</p>
+              <p class="mi-msg mi-in">We need 500 units/month, anodized. Can you quote?</p>
+              <p class="mi-msg mi-out">Specs received ▸ call scheduled — TUE 11:00</p>
+              <p class="mi-stamp">▣ QUALIFIED — ROUTED TO PIPELINE</p>
+            </div>
+            <p class="media-tag">ST.03 — CONVERSATIONS → ORDERS</p>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <!-- ====== A3 · OUTPUT ====== -->
+    <section id="output" class="solid">
+      <div class="wrap">
+        <p class="mlabel kick">SECTION A3 — MEASURED OUTPUT</p>
+        <h2 class="h2">TOLERANCES WE HOLD.</h2>
+
+        <div class="gauges">
+          <div class="gauge">
+            <p class="gauge-num"><span class="count" data-count="4000">0</span>+</p>
+            <div class="gauge-bar"><i></i></div>
+            <p class="gauge-unit">B2B LEADS GENERATED</p>
+          </div>
+          <div class="gauge">
+            <p class="gauge-num"><span class="count" data-count="12">0</span>+</p>
+            <div class="gauge-bar"><i></i></div>
+            <p class="gauge-unit">BRANDS SCALED</p>
+          </div>
+          <div class="gauge">
+            <p class="gauge-num"><span class="count" data-count="75">0</span>%</p>
+            <div class="gauge-bar"><i></i></div>
+            <p class="gauge-unit">LEAD → CALL CONVERSION</p>
+          </div>
+        </div>
+
+        <table class="tol-table">
+          <tbody>
+            <tr><td>RESPONSE TIME</td><td>≤ 24 H</td><td><b class="ok">▣ PASS</b></td></tr>
+            <tr><td>CONTENT CADENCE</td><td>WEEKLY</td><td><b class="ok">▣ PASS</b></td></tr>
+            <tr><td>TARGET AUDIENCE</td><td>DECISION-MAKERS ONLY</td><td><b class="ok">▣ PASS</b></td></tr>
+            <tr><td>GENERIC POSTS</td><td>0 TOLERATED</td><td><b class="ok">▣ PASS</b></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ====== A4 · FIELD REPORTS ====== -->
+    <section id="reports" class="solid">
+      <div class="wrap">
+        <p class="mlabel kick">SECTION A4 — FIELD REPORTS</p>
+        <h2 class="h2">FROM THE FLOOR.</h2>
+
+        <div class="logs">
+          <figure class="log">
+            <figcaption class="log-head">LOG 001 — KARMA INNOVATIONS — VERIFIED ✓</figcaption>
+            <blockquote>"Fresh content every week — without lifting a finger. I stopped worrying about what to post."</blockquote>
+            <p class="log-sign">— KARTHIKEYAN JAWAHAR, DIRECTOR</p>
+          </figure>
+          <figure class="log">
+            <figcaption class="log-head">LOG 002 — RENUKA TOOLS — VERIFIED ✓</figcaption>
+            <blockquote>"They turn raw ideas into strong content that brings real leads. That's the difference."</blockquote>
+            <p class="log-sign">— ANAND MULAY, MD</p>
+          </figure>
+          <figure class="log">
+            <figcaption class="log-head">LOG 003 — VIBEX MACHINES — VERIFIED ✓</figcaption>
+            <blockquote>"Now it works quietly in the background — like a good machine should."</blockquote>
+            <p class="log-sign">— DINESH ALONE, DIRECTOR</p>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====== A5 · COMMISSION ====== -->
+    <section id="commission">
+      <div class="wrap comm-grid">
+        <div class="comm-copy">
+          <p class="mlabel kick">SECTION A5 — COMMISSION</p>
+          <h2 class="display comm-title">
+            <span class="dline"><span class="dmask">BUILT?</span></span>
+            <span class="dline"><span class="dmask grad">NOW BE SEEN.</span></span>
+          </h2>
+          <p class="comm-body">Free 30-minute build review. We map exactly how LinkedIn becomes your best salesperson. No retainer talk, no deck.</p>
+        </div>
+
+        <form id="order" class="order" novalidate>
+          <p class="order-head">WORK ORDER — BV/NEW</p>
+          <label>NAME<input type="text" name="name" required minlength="2" autocomplete="name" /></label>
+          <label>COMPANY<input type="text" name="company" required minlength="2" autocomplete="organization" /></label>
+          <label>EMAIL<input type="email" name="email" required autocomplete="email" /></label>
+          <label>PHONE<input type="tel" name="phone" required minlength="7" autocomplete="tel" /></label>
+          <button class="rbtn rbtn-fill order-submit" type="submit" data-magnetic>SUBMIT WORK ORDER</button>
+          <p class="order-note">ROUTES VIA WHATSAPP — REPLY ≤ 24H</p>
+          <p class="order-alt">or message the line directly →
+            <a href="https://wa.me/919579662005" target="_blank" rel="noopener noreferrer">WHATSAPP</a> /
+            <a href="https://www.linkedin.com/company/bigvision" target="_blank" rel="noopener noreferrer">LINKEDIN</a>
+          </p>
+        </form>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ====== FOOTER · title block ====== -->
+  <footer>
+    <div class="tblock wrap">
+      <div class="tb-cell"><span>DRAWN BY</span>BIG VISION</div>
+      <div class="tb-cell"><span>SCALE</span>1:1</div>
+      <div class="tb-cell"><span>SHEET</span>1 OF 1</div>
+      <div class="tb-cell"><span>REV</span>v3.0</div>
+      <div class="tb-cell"><span>DATE</span><b id="year"></b></div>
+      <div class="tb-cell"><span>APPROVED</span>YOU</div>
+    </div>
+    <div class="foot-links wrap">
+      <a href="#process" data-scrollto="#process">PROCESS</a>
+      <a href="#output" data-scrollto="#output">OUTPUT</a>
+      <a href="#reports" data-scrollto="#reports">REPORTS</a>
+      <a href="https://wa.me/919579662005" target="_blank" rel="noopener noreferrer">WHATSAPP</a>
+      <a href="tel:+919579662005">+91 95796 62005</a>
+    </div>
+    <p class="foot-mark" aria-hidden="true">BIG&nbsp;VISION</p>
+    <p class="foot-copy">© <span id="year2"></span> BIG VISION — ALL RIGHTS RESERVED</p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.min.js"></script>
+
+  <script type="module" src="js/scene.js?v=7"></script>
+  <script src="js/main.js?v=7" defer></script>
+</body>
+</html>
