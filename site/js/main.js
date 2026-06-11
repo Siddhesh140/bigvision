@@ -194,40 +194,7 @@
   const track = document.querySelector('.marquee-track');
   track.innerHTML += track.innerHTML;
 
-  /* ---------- SERVICES: index rows + cursor-following preview ---------- */
-
-  const floatBox = document.querySelector('.service-float');
-  const floatImg = floatBox ? floatBox.querySelector('img') : null;
-
-  if (floatBox && !isTouch) {
-    const fpos = { x: 0, y: 0, tx: 0, ty: 0 };
-    let floatActive = false;
-
-    window.addEventListener('mousemove', (e) => {
-      fpos.tx = e.clientX + 28;
-      fpos.ty = e.clientY - 100;
-    }, { passive: true });
-
-    gsap.ticker.add(() => {
-      if (!floatActive && Math.abs(fpos.x - fpos.tx) < 0.5) return;
-      fpos.x += (fpos.tx - fpos.x) * 0.12;
-      fpos.y += (fpos.ty - fpos.y) * 0.12;
-      floatBox.style.transform = `translate(${fpos.x}px, ${fpos.y}px) scale(${floatActive ? 1 : 0.92})`;
-    });
-
-    document.querySelectorAll('.service-row').forEach((row) => {
-      row.addEventListener('mouseenter', () => {
-        floatImg.src = row.dataset.img;
-        if (!floatActive) { fpos.x = fpos.tx; fpos.y = fpos.ty; } // snap on first hover
-        floatBox.classList.add('is-active');
-        floatActive = true;
-      });
-      row.addEventListener('mouseleave', () => {
-        floatBox.classList.remove('is-active');
-        floatActive = false;
-      });
-    });
-  }
+  /* ---------- SERVICES: index rows ---------- */
 
   // rows slide in with a stagger
   gsap.utils.toArray('.service-row').forEach((row, i) => {

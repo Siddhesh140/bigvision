@@ -149,13 +149,14 @@ FOOTER  giant outlined wordmark
 
 ### 5.5 Act 3 — Services (index list)
 - Head: kicker `01 — What we do` (mono 12px +0.22em signal-light) + H2 word-split "Built to make you unmissable".
-- **Index:** hairline-top list of three `.service-row`s, hairline-bottom each. Grid `80px | 1fr | 1.2fr | 60px` (num / title / body / arrow), 44px vertical padding.
+- **Index:** hairline-top list of three `.service-row`s, hairline-bottom each. Grid `64px | 1.1fr | 220px | 1.2fr | 48px` (num / title / media / body / arrow), 40px vertical padding.
   - num: mono 13px slate-faint → signal-light on hover.
   - title: display-800 `clamp(24px,3.4vw,46px)`.
+  - media: always-visible 220×120 thumbnail, 16px radius, rest state `saturate(.7) brightness(.85)`; hover scales 1.06 + full color. **No cursor-follow popups.**
   - body: tag (mono 11px +0.18em signal-light) + desc (body-sm slate-muted, max 480px).
   - arrow `→` slate-faint, slides +8px and whitens on hover. Row indents 24px on hover (padding transition 0.45s).
-- **Float preview:** fixed 300×200 16px-radius image, hidden on touch; follows cursor (+28, −100 offset, lerp 0.12), snaps on first hover, fades 0.3s; src from `data-img`. z 50, whisper shadow, saturate(.85).
 - Rows reveal on scroll: y40 fade, 0.9s, 0.08 stagger.
+- ≤1100px: media + arrow hidden (3-col grid).
 - Close: `.end-statement` centered display-800 `clamp(24px,3vw,42px)`: "One partner. One plan. *All execution.*"
 - <860px: grid collapses to `48px | 1fr` two rows; arrow hidden; float hidden.
 
