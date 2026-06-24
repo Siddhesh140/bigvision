@@ -115,7 +115,7 @@ const WhyBigVision = () => {
             <div className="flex flex-col gap-8">
               <div className="flex items-center gap-4"><CheckIcon /> <p className="text-base md:text-xl flex-1" style={{ fontFamily: "'Roboto Mono', monospace" }}>We understand how industrial buying works</p></div>
               <div className="flex items-start gap-4"><CheckIcon /> <p className="text-base md:text-xl flex-1" style={{ fontFamily: "'Roboto Mono', monospace" }}>We speak manufacturing — no generic marketing</p></div>
-              <div className="flex items-center gap-4"><CheckIcon /> <p className="text-base md:text-xl flex-1" style={{ fontFamily: "'Roboto Mono', monospace" }}>We treat your brand like it's our own</p></div>
+              <div className="flex items-center gap-4"><CheckIcon /> <p className="text-base md:text-xl flex-1" style={{ fontFamily: "'Roboto Mono', monospace" }}>We treat your brand like it&apos;s our own</p></div>
               <div className="flex items-start gap-4"><CheckIcon /> <p className="text-base md:text-xl flex-1" style={{ fontFamily: "'Roboto Mono', monospace" }}>And we care more about conversions than clicks</p></div>
             </div>
           </div>
@@ -128,10 +128,10 @@ const WhyBigVision = () => {
             <div className="flex flex-col gap-8 text-center lg:text-left">
                 <div className="flex flex-col gap-6">
                     <h2 className="text-4xl md:text-5xl font-bold text-white" style={{ fontFamily: "'Integral CF', sans-serif" }}>
-                        You've spent years building your company.
+                        You&apos;ve spent years building your company.
                     </h2>
                     <p className="text-lg md:text-xl text-white" style={{ fontFamily: "'Roboto Mono', monospace" }}>
-                        Now it's time to make the world notice. Let's grow your presence and pipeline — together.
+                        Now it&apos;s time to make the world notice. Let&apos;s grow your presence and pipeline — together.
                     </p>
                 </div>
                 <p className="text-sm md:text-base text-gray-400" style={{ fontFamily: "'Roboto Mono', monospace" }}>

@@ -91,7 +91,7 @@ const Contact = () => {
             Ready to Transform Your LinkedIn Presence?
           </h2>
           <p className="text-base md:text-xl text-white max-w-3xl" style={{ fontFamily: "'Roboto Mono', monospace" }}>
-            Fill out the form below and we'll reach out to discuss how we can help grow your business
+            Fill out the form below and we&apos;ll reach out to discuss how we can help grow your business
           </p>
         </div>
 
@@ -144,7 +144,7 @@ const Contact = () => {
                   <ChatIcon />
                   <div className="flex flex-col gap-4">
                     <h4 className="text-lg md:text-xl font-bold text-white" style={{ fontFamily: "'Montserrat', sans-serif" }}>Quick Response</h4>
-                    <p className="text-base md:text-xl text-gray-400" style={{ fontFamily: "'Roboto Mono', monospace" }}>We'll respond within 24 hours to schedule your call</p>
+                    <p className="text-base md:text-xl text-gray-400" style={{ fontFamily: "'Roboto Mono', monospace" }}>We&apos;ll respond within 24 hours to schedule your call</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-6">
@@ -159,7 +159,7 @@ const Contact = () => {
             <div className="p-8 flex-1 flex flex-col gap-10 bg-white text-black rounded-lg transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-[0_0_35px_rgba(59,130,246,0.4)]">
               <div className="flex flex-col gap-4">
                 <h3 className="text-2xl font-bold" style={{ fontFamily: "'Montserrat', sans-serif" }}>Ready to Scale Your Business?</h3>
-                <p className="text-lg md:text-xl" style={{ fontFamily: "'Roboto Mono', monospace" }}>Join 12+ manufacturing brands who've already transformed their LinkedIn presence with Big Vision.</p>
+                <p className="text-lg md:text-xl" style={{ fontFamily: "'Roboto Mono', monospace" }}>Join 12+ manufacturing brands who&apos;ve already transformed their LinkedIn presence with Big Vision.</p>
               </div>
               <div className="flex items-center gap-6">
                 <div className="flex -space-x-2">

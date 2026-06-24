@@ -199,7 +199,7 @@ export default function Home() {
                 </p>
               </div>
               <p className="text-base lg:text-[1rem] text-white" style={{ fontFamily: "'Roboto Mono', monospace" }}>
-                Our team creates content that speaks your customers' language. Reels, carousels, thought-leadership posts tailored to your brand & buyer.
+                Our team creates content that speaks your customers&apos; language. Reels, carousels, thought-leadership posts tailored to your brand &amp; buyer.
               </p>
             </div>
           </div>

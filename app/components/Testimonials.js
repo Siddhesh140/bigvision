@@ -33,7 +33,7 @@ const Testimonials = () => {
                 </div>
             </div>
             <p className="text-lg md:text-xl text-white min-h-[12rem]" style={{ fontFamily: "'Roboto Mono', monospace" }}>
-              "Fresh content, every week — without lifting a finger. I finally stopped worrying about what to post."
+              &ldquo;Fresh content, every week — without lifting a finger. I finally stopped worrying about what to post.&rdquo;
             </p>
           </div>
           <div className="flex items-center gap-5">
@@ -58,7 +58,7 @@ const Testimonials = () => {
                 </div>
             </div>
             <p className="text-lg md:text-xl text-white min-h-[12rem]" style={{ fontFamily: "'Roboto Mono', monospace" }}>
-              "They turn raw ideas into strong content that brings real leads. That's the difference."
+              &ldquo;They turn raw ideas into strong content that brings real leads. That&apos;s the difference.&rdquo;
             </p>
           </div>
           <div className="flex items-center gap-5">
@@ -83,7 +83,7 @@ const Testimonials = () => {
                 </div>
             </div>
             <p className="text-lg md:text-xl text-white min-h-[12rem]" style={{ fontFamily: "'Roboto Mono', monospace" }}>
-              "Earlier, I avoided social media. Now it works quietly in the background — just like a good machine should."
+              &ldquo;Earlier, I avoided social media. Now it works quietly in the background — just like a good machine should.&rdquo;
             </p>
           </div>
           <div className="flex items-center gap-5">
