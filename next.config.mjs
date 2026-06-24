@@ -1,6 +1,4 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {
-  // Vercel deployment trigger
-};
+const nextConfig = {};
 
 export default nextConfig;
